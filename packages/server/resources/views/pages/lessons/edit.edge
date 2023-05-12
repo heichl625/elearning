@@ -1,0 +1,273 @@
+@layout('layout/main')
+
+@section('content')
+@set('url', request.url())
+@!component('components/submenu', {
+items: [
+{
+title: '建立新課堂',
+link: '/cms/lessons/add',
+}
+],
+path: url,
+page: '課堂'
+})
+{{style('styles/lessons')}}
+<div class="inner-container">
+    @!component('components/breadcrumb', {
+    items:[
+    {
+    link: '/cms',
+    page: '主頁'
+    },{
+    link: '/cms/lessons',
+    page: '課程'
+    }
+    ],
+    currentPage: '修改課堂 (' + lesson.title + ')'
+    })
+    <h2 class="page-title">修改課堂</h2>
+    @if(old('notification'))
+    <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+    <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    <p class="upload-error error-msg"></p>
+    <form action="/cms/lessons/edit/{{lesson.id}}" method="POST" onsubmit="submitForm()" enctype="multipart/form-data">
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>課堂名稱：</label>
+            <div class="col-sm-10">
+                <input placeholder='請輸入課堂名稱...' name="title" class="title-input form-control form-control-sm" required
+                    value="{{lesson.title}}" />
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>所屬課程：</label>
+            <div class="col-sm-10">
+                <select name="course_id" class="course-input form-select" value="lesson.course_id">
+                    @each(course in courses)
+                    <option value="{{course.id}}">{{course.title}}</option>
+                    @endeach
+                </select>
+            </div>
+            <script course_id="{{lesson.course_id}}">
+                let courseRef = document.querySelectorAll('.course-input option');
+                let course_id = document.currentScript.getAttribute('course_id');
+
+                for(let i = 0; i < courseRef.length; i++){
+                    if(courseRef[i].value === course_id){
+                        courseRef[i].setAttribute('selected', 'selected')
+                    }
+                }
+            </script>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-12"><span class="required">*</span>課堂簡介：</label>
+            <div class="col-sm-12">
+                <div id="editor">
+                    <p>請在此輸入課堂簡介⋯⋯</p>
+                </div>
+            </div>
+            <input class="description-input" name='description' value="{{lesson.description}}" />
+            <script>
+                document.querySelector('#editor').innerHTML = document.querySelector('.description-input').value;
+
+            </script>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>課堂影片連結：</label>
+            <div class="col-sm-10">
+                <input type='text' name="video_url" class="url-input form-control form-control-sm"
+                    placeholder="請貼上簡介課程影片的Vimeo連結..." required value="{{lesson.video_url}}" />
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-12">教材上載：（不大於5MB）</label>
+            <div class="material-list card">
+                @each(material in materials)
+                <div id="material_{{material.id}}" class="material-item">
+                    <a href="{{material.url}}" download="{{material.file_name}}">{{material.file_name}}</a>
+                    <button onclick="deleteOldMaterials(event)" class="btn btn-danger">刪除</button>
+                </div>
+                @endeach
+            </div>
+            <script>
+                let materialListRef = document.querySelector('.material-list');
+                if (document.querySelector('.material-item')) {
+                    materialListRef.setAttribute('style', 'display: flex; flex-direction: column')
+                }
+            </script>
+            <div class="col-sm-10">
+                <input type="file" name="material" class="material-input form-control form-control-sm"
+                    onchange="uploadFiles(event)" />
+            </div>
+            <input type="text" name="materials" class="materials" />
+
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>課堂次序</label>
+            <div class="col-sm-10">
+                <input type="number" name="order" class="order-input form-control form-control-sm" required
+                    value="{{lesson.order}}" />
+            </div>
+        </div>
+        <div class='input-item form-check'>
+            <label class="form-check-label">範例課堂：</label>
+            <input type='checkbox' name="trial" class="trial-input form-check-input" value="{{lesson.trial}}" />
+            <script>
+                let checkbox = document.querySelector('.trial-input')
+                if (checkbox.value == 1) {
+                    checkbox.setAttribute('checked', 'checked');
+                }
+            </script>
+        </div>
+
+        <div class="input-item">
+            <div class="required-label"><span class="required">*</span>的項目為必須填寫</div>
+        </div>
+
+        <button class="btn btn-primary">修改課程</button>
+
+    </form>
+
+    <script>
+        let materials = [];
+
+        async function deleteOldMaterials(event) {
+
+            event.preventDefault();
+
+            if (confirm('你要刪除此教材嗎？')) {
+                const id = event.srcElement.parentNode.id
+                console.log(id)
+
+                let formData = new FormData();
+                formData.append('id', id);
+
+                fetch('/cms/materials/deleteOld', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.log(data.error);
+                        } else {
+                            document.getElementById(id).remove();
+                            if (!document.querySelector('.material-item')) {
+                                document.querySelector('.material-list').removeAttribute('style');
+                            }
+                        }
+                    })
+            }
+
+        }
+
+        async function deleteMaterial(event) {
+
+            event.preventDefault();
+
+            if (confirm('你要刪除此教材嗎？')) {
+
+                const fileName = event.srcElement.parentNode.id
+
+                let formData = new FormData();
+                formData.append("fileName", fileName);
+
+                fetch('/cms/materials/delete', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            console.log('Failed to delete file')
+                        } else {
+                            document.getElementById(fileName).remove();
+                            document.querySelector('.material-input').value = ""
+                            materials = materials.filter(material => material.url !== '/uploads/materials/'+fileName)
+                            if (!document.querySelector('.material-list').firstChild) {
+                                document.querySelector('.material-list').removeAttribute('style');
+                            }
+                        }
+                    })
+            }
+
+        }
+
+
+        async function uploadFiles(event) {
+
+            event.preventDefault();
+
+            let tgt = event.target || window.event.srcElement,
+                files = tgt.files;
+
+            let fileListRef = document.querySelector('.material-list');
+            let formData = new FormData();
+
+
+            if (files.length > 0) {
+                for (let i = 0; i < files.length; i++) {
+                    formData.append("file", files[0])
+                }
+            }
+
+            fetch('/cms/materials', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (response.status !== 200) {
+                        document.querySelector('.upload-error').innerText = '未能成功上載教材: ' +files[0].name;
+                        document.querySelector('.upload-error').setAttribute('style', 'display: block;')
+                    } else {
+                        return response.json()
+                    }
+                })
+                .then(data => {
+                    if(data.error){
+                        alert(data.error);
+                        document.querySelector('.material-input').value = null
+                    }else{
+                        let container = document.createElement('div')
+                        let node = document.createElement('a')
+                        let textNode = document.createTextNode(data.clientName)
+                        node.appendChild(textNode)
+                        node.setAttribute('href', data.url)
+                        node.setAttribute('download', data.clientName)
+                        container.appendChild(node)
+                        let deleteNode = document.createElement('button')
+                        let deleteText = document.createTextNode('刪除')
+                        deleteNode.appendChild(deleteText)
+                        deleteNode.onclick = deleteMaterial;
+                        deleteNode.classList.add('btn')
+                        deleteNode.classList.add('btn-danger')
+                        container.appendChild(deleteNode)
+                        container.id = data.fileName;
+                        fileListRef.appendChild(container)
+                        fileListRef.setAttribute('style', 'display:flex; flex-direction:column')
+
+                        materials.push({
+                            url:'/uploads/materials/' + data.fileName,
+                            client_name: data.clientName,
+                            file_name: data.fileName
+                        })
+                    }
+                });
+
+        }
+
+        function submitForm(event) {
+            document.querySelector('.description-input').value = document.querySelector('.ql-editor').innerHTML
+            document.querySelector('.description-input').value = document.querySelector('.description-input').value;
+            document.querySelector('.trial-input').value = document.querySelector('.trial-input').checked
+            document.querySelector('.materials').value = JSON.stringify(materials);
+        }
+    </script>
+</div>
+@endsection
+<div>
+    Hello
+</div>

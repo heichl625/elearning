@@ -1,0 +1,65 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/responsive.scss';
+@import '../../../styles/skeleton.scss';
+
+.container{
+    padding: 4rem 18.5rem 10rem;
+
+    @include lg{
+        padding: 1.5em
+    }
+}
+
+.skeletonContainer{
+    width: 100%;
+    padding: 1.5em;
+    box-sizing: border-box;
+    border: 1px solid $border-color;
+    margin-bottom: 1.5em;
+    position: relative;
+
+    .skeleton:first-of-type{
+        width: 5em;
+        height: 1.5rem;
+        margin-bottom: 0.5em;
+    }
+
+    .skeleton:nth-of-type(2){
+        width: 20rem;
+        height: 2rem;
+
+        @include lg{
+            width: 10rem;
+        }
+    }
+
+    @include lg{
+        padding: 1.5em;
+        margin-bottom: 1em;
+    }
+}
+
+.skeleton{
+    overflow: hidden;
+    position: relative;
+    background-color: $skeleton-color;
+}
+
+.skeleton::before{
+    @include skeleton;
+}
+
+.statusSkeleton{
+    overflow: hidden;
+    position: absolute;
+    background-color: $skeleton-color;
+    right: 5%;
+    top: 50%;
+    width: 5em;
+    height: 2rem;
+    margin-top: -1rem
+}
+
+.statusSkeleton::before{
+    @include skeleton;
+}

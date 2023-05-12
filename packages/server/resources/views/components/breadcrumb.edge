@@ -1,0 +1,8 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        @each(item in items)
+            <li class="breadcrumb-item"><a href="{{item.link}}">{{item.page}}</a></li>
+        @endeach
+      <li class="breadcrumb-item active" aria-current="page">{{currentPage}}</li>
+    </ol>
+</nav>

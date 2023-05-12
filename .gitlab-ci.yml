@@ -1,0 +1,45 @@
+image: docker/compose:alpine-1.29.2
+
+variables:
+  SOURCE_IMAGE: "melearn"
+  DEST_INNO_IMAGE: "regs.dev.innopage.com/melearn/melearn:dev"
+  MODE: "dev"
+
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "develop"
+      variables:
+        SOURCE_IMAGE: "melearn"
+        DEST_INNO_IMAGE: "regs.dev.innopage.com/melearn/melearn:dev"
+        MODE: "dev"
+    - if: $CI_COMMIT_BRANCH == "prd"
+      variables:
+        SOURCE_IMAGE: "melearn"
+        DEST_INNO_IMAGE: "regs.dev.innopage.com/melearn/melearn:prd"
+        MODE: "prd"
+    - when: always   
+
+before_script:
+  - echo "ci start"
+  - docker --version
+  - docker-compose --version
+  - docker info
+  - docker login -u cicd -p $innopage_reg_pw regs.dev.innopage.com
+  - apk add curl
+  - curl --version
+
+stages:
+  - build
+
+build_job:
+  stage: build
+  interruptible: true
+  rules:
+    - if: ($CI_COMMIT_MESSAGE =~ /.*deploy.*/ || $CI_PIPELINE_SOURCE == "web")
+  script:
+    - pwd
+    - ls -la
+    - export DOCKER_BUILDKIT=1
+    - MODE=${MODE} docker-compose build
+    - docker tag "${SOURCE_IMAGE}" "${DEST_INNO_IMAGE}"
+    - docker push "${DEST_INNO_IMAGE}"

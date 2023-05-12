@@ -1,0 +1,19 @@
+@import '../../../styles/color.scss';
+
+.swiper-button-prev::after,
+.swiper-button-next::after{
+    font-size: 1.5rem;
+}
+
+.swiper-button-next,
+.swiper-button-prev{
+    color: $secondary-text-color !important;
+}
+
+.swiper-button-next{
+    right: 10% !important;
+}
+
+.swiper-button-prev {
+    left: 10% !important;
+}

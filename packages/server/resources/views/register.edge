@@ -1,0 +1,26 @@
+{{style('styles/login')}}
+
+<div class="login-card">
+    <div class="login-brand">
+        <img src='/assest/logo_desktop.png' class="login-icon">
+    </div>
+    @if(error_msg)
+        <div class="notification">
+            {{{error_msg}}}
+        </div>
+    @endif
+    <form class="login-form" action="/cms/register-tutor" method='POST'>
+        <label class="input-label">電郵</label>
+        <input type='text' placeholder="輪入電郵" name='email'/>
+        <label class="input-label">密碼</label>
+        <input type='password' placeholder="輪入密碼" name='password'/>
+        <label class="input-label">確認密碼</label>
+        <input type='password' placeholder="確認密碼" name='confirmPassword'/>
+        <label class="input-label">角色</label>
+        <select name="role">
+            <option value="course_developer">課程管理員</option>
+            <option value="tutor">導師</option>
+        </select>
+        <button type="submit">註冊</button>
+    </form>
+</div>

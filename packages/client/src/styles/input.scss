@@ -1,0 +1,27 @@
+@import './color.scss';
+
+@mixin inputGroup {
+    position: relative;
+}
+
+@mixin inputField {
+    border: none;
+    outline: none;
+    border-bottom: 1.5px solid $border-color;
+}
+
+@mixin floatingLabel{
+    position: absolute;
+    pointer-events: none;
+    color: $placeholder-color;
+    top: 0;
+    left: 0;
+    transition: 0.2s ease all;
+}
+
+@mixin floatingLabel-focus{
+    top: 0;
+    margin-top: -1.25rem;
+    font-size: 0.9375rem;
+    color: $primary-text-color;
+}

@@ -1,0 +1,262 @@
+.inbox-container{
+    bottom: 0;
+    top: 57px;
+    right: 0;
+    left: 0;
+    position:fixed;
+    
+}
+
+.inbox-backbtn{
+    display: block;
+    margin-left: 2em;
+    font-size: 1.25rem;
+    padding: 0.875em 0;
+}
+
+.inbox-content-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.admin-inbox{
+    height: calc( 100% - 70px)
+}
+
+.studentList{
+    width: 25.5rem;
+    height: 100%;
+    border-right: 1px solid #E6E6E6;
+}
+
+.noMessage{
+    text-align: center;
+    color: #363636;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+.studentBlock{
+    padding: 1rem;
+    border-bottom: 1px solid #E6E6E6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.studentBlock.active{
+    background-color: rgba(43, 186, 238, 0.15);
+}
+
+.studentID{
+    margin: 0;
+    color: #363636;
+}
+
+.chatContainer{
+    flex-grow: 1;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+.messageList{
+    padding-top: 2rem;
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+
+.userbar{
+    border-bottom: 1px solid #E6E6E6;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.tutorMsgContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.tutorMsgContainer .timeText{
+    margin-right: 1em;
+}
+
+.tutorMsgBlock{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 1rem;
+}
+
+.dateText{
+    margin-left: auto;
+    margin-right: auto;
+    width: 6rem;
+    text-align: center;
+    padding: 0.5em;
+    background-color: #E6E6E6;
+    opacity: 0.6;
+    border-radius: 20px;
+    color: #363636;
+}
+
+.timeText{
+    margin: 0;
+    color: #363636;
+    opacity: 0.6;
+}
+
+.tutorMsgBubble{
+    background-color: #f5f5f5;
+    border-radius: 0.5rem;
+    color: #363636;
+    font-size: 1.125rem;
+    padding: 0.75rem;
+    max-width: 35rem;
+}
+
+.userMsgContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.userMsgContainer .timeText{
+    margin-left: 1em;
+}
+
+.userMsgBlock{
+    display: flex;
+    margin: 1rem;
+    align-items: center;
+}
+
+.userMsgBubble{
+    background-color: #2BBAEE;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    color: #ffffff;
+    font-size: 1.125rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 35rem;
+}
+
+.message{
+    display: inline;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.messageImage{
+    height: 12.5rem;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.messageFile{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.inputBlock{
+    border-top: 1px solid #E6E6E6;
+    padding: 0.75rem 5rem;
+    display: flex; 
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+}
+
+.largerBlock{
+    height: 25rem;
+}
+
+.inputRow{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.icon{
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    margin-right: 2rem;
+    cursor: pointer;
+}
+
+.msgInput{
+    flex-grow: 1;
+    margin-right: 2rem;
+    border-radius: 1.25rem;
+    color: #363636;
+    font-size: 1.25rem;
+    border: 1px solid #F6F6F6;
+    outline:none;
+    padding: 1rem 1rem 0;
+    background-color: #f5f5f5;
+    overflow: hidden;
+    resize: none;
+}
+
+.msgInput:focus{
+    outline: none;
+}
+
+.hiddenInput{
+    display: none;
+}
+
+#attachedFile{
+    display: flex;
+    align-items: center;
+}
+
+.previewImg{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.previewFile{
+    height: 5rem;
+    padding: 0.5rem;
+    border: 1px solid #F6F6F6;
+    margin: 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+.attached-image-container{
+    position: relative;
+    margin: 1rem;
+}
+
+.attached-file-container{
+    position: relative;
+    margin: 1rem;
+}
+
+.attached-remove-btn{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.sendBtn{
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.sendBtn:focus{
+    outline: none;
+}

@@ -1,0 +1,541 @@
+@import '../../../styles/color.scss';
+@import '../../../styles//button.scss';
+@import '../../../styles/responsive.scss';
+@import '../../../styles/skeleton.scss';
+
+.upperBar{
+    width: 100%;
+    background-image: linear-gradient(180deg, #887777 0%, #225074 100%);
+    padding: 4.75rem 0;
+    position: relative;
+    box-sizing: border-box;
+
+    @include lg{
+        padding: 2em 1.5em;
+    }
+   
+}
+
+.copiedText{
+    position: fixed;
+    width: 12rem;
+    padding: 0.875em;
+    font-size: 1.5rem;
+    margin: 0;
+    text-align: center;
+    border-radius: 1.5rem;
+    background-color: $border-color;
+    color: $secondary-text-color;
+    top: 50%;
+    left: 50%;
+    margin-top: -1.5rem;
+    margin-left: -6.4375rem;
+}
+
+.showCopiedText{
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+.hideCopiedText{
+    visibility: hidden;
+    opacity: 0;
+    transition:  visibility 0s linear 300ms, opacity 300ms;
+}
+
+.upperBarWrapper{
+    display: flex;
+    overflow: hidden;
+    width: 95%;
+    max-width: 75rem;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    @include lg{
+        flex-direction: column-reverse;
+    }
+}
+
+.left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+
+    @include lg{
+        width: 100%;
+    }
+}
+
+.enrolledBadge{
+    background-color: $primary-background-color;
+    border: 0.5px solid $border-color;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 0.75rem;
+    color: $dark-blue-text-color;
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+    padding: 0.1875rem 0;
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+
+    @include lg{
+        margin: 1em 0;
+    }
+}
+
+.title{
+    color: $light-text-color;
+    font-size: 3.125rem;
+    list-style: 4.375rem;
+    font-weight: 600;
+
+    @include lg{
+        font-size: 1.875rem;
+        line-height: normal;
+        font-weight: 500;
+        margin: 0;
+    }
+}
+
+.titleSkeleton{
+    background-color: $skeleton-color;
+    height: 3.12rem;
+    width: 70%;
+    overflow: hidden;
+    position: relative;
+    margin: 1.5em 0;
+
+    @include lg{
+        height: 1.875rem;
+        width: 70%
+    }
+}
+
+.titleSkeleton:before{
+    @include skeleton;
+}
+
+.instructor{
+    display: flex;
+    align-items: center;
+
+    @include lg{
+        width: 100%;
+    }
+}
+
+.instructorAvator{
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 100%;
+    object-fit: cover;
+
+    @include lg{
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+.subtitleBar{
+    display: flex;
+    flex-wrap: wrap;
+    @include lg{
+        max-width: 15rem;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
+
+.subtitleBarSkeleton{
+    width: 90%;
+    height: 2rem;
+    background-color: $skeleton-color;
+    overflow: hidden;
+    position: relative;
+
+    @include lg{
+        max-width: 15rem;
+        height: 1.5rem
+    }
+}
+
+.subtitleBarSkeleton:before{
+    @include skeleton;
+}
+
+.subtitleText{
+    color: $light-text-color;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2rem;
+    margin-left: 0.5rem;
+
+    @include lg{
+        font-size: 1rem;
+        line-height: normal;
+        font-weight: 500;
+    }
+}
+
+.numbersContainer{
+    display: flex;
+    align-items: center;
+    margin-left: 4rem;
+
+    @include lg{
+        margin-left: 0;
+    }
+}
+
+.icon{
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+}
+
+.specContainer{
+    margin-top: 5rem;
+
+    @include lg{
+        margin: 0;
+    }
+}
+
+.spec{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: $light-text-color;
+
+    @include lg{
+        font-size: 1rem;
+        line-height: normal;
+    }
+}
+
+.specSkeleton{
+    width: 50%;
+    height: 1.75rem;
+    background-color: $skeleton-color;
+    overflow: hidden;
+    position: relative;
+    margin: 1.5em 0;
+
+    @include lg{
+        height: 1rem;
+    }
+}
+
+.specSkeleton:before{
+    @include skeleton;
+}
+
+.progressBarContainer{
+    display: flex;
+    align-items: center;
+    margin: 2.75rem 0;
+}
+
+.progressBar{
+    width: 29.875rem;
+    height: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: $primary-background-color;
+
+    @include lg{
+        width: 95%;
+    }
+}
+
+.currentProgress{
+    height: 100%;
+    background-color: #15BF93;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    position: relative
+}
+
+.currentProgressIndicator{
+    height: 1.5rem;
+    content: '';
+    width: 1.5rem;
+    position: absolute;
+    border-radius: 100%;
+    background-color: #15BF93;
+    top: 0;
+    right: 0;
+    margin-top: -0.5rem;
+    margin-right: -0.5rem;
+}
+
+.progressPercent{
+    color: $light-text-color;
+    font-size: 1rem;
+    line-height: 1.375rem;
+    margin-left: 0.5rem;
+}
+
+.buttonGroup{
+    display: flex;
+    flex-grow: 1;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    max-width: 27rem;
+
+    @include lg{
+        flex-direction: column;
+        max-width: 100%;
+    }
+}
+
+.btn{
+    @include globalButton;
+    color: $primary-btn-text-color;
+    background-color: $primary-btn-background-color;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding: 1rem 2.1875rem; 
+    display: flex;
+    align-items: center;
+    outline: none;
+    border: none;
+    margin-right: 1rem;
+    justify-content: center;
+
+    @include lg{
+        padding: 1rem 0;
+        width: 100%;
+        box-sizing: border-box;
+        margin-right: 0;
+        margin-bottom: 0.5em;
+    }
+}
+
+.btn:last-of-type{
+    margin-right: 0;
+}
+
+.favouriteBtn{
+    width: 100%;
+    margin-bottom: 0.5em;
+}
+
+.continueBtn{
+    width: 60%;
+
+    @include lg{
+        width: 100%;
+    }
+}
+
+.btnIcon{
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: cover;
+    margin-right: 0.5rem;
+}
+
+.right{
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+
+    @include lg{
+        width: 100%;
+        padding: 0;
+    }
+}
+
+.largeCoverImg{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+
+    @include lg{
+        width: 100%;
+        height: auto;
+    }
+}
+
+.imgSkeleton{
+    width: 100%;
+    height: 30rem;
+    background-color: $skeleton-color;
+    overflow: hidden;
+    position: relative;
+
+    @include lg{
+        height: 20rem;
+    }
+}
+
+.imgSkeleton::before{
+    @include skeleton;
+}
+
+.courseCard{
+    width: 32rem;
+    height: 100%;
+    background-color: $primary-background-color;
+    display: flex;
+    flex-direction: column;
+
+    @include lg{
+        width: 100%;
+        margin-bottom: 1em;
+    }
+}
+
+.coverImg{
+    height: 21.375rem;
+    width: 100%;
+    object-fit: cover;
+
+    @include lg{
+        width: 100%;
+        height: auto;
+    }
+}
+
+.cardContent{
+    padding: 1.125rem 1rem 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.enrollNum{
+    display: flex;
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    justify-content: flex-end;
+    margin: 0;
+}
+
+.originalPrice{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0;
+}
+
+.price{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $secondary-text-color;
+    margin: 0;
+    position: relative;
+
+    @include lg{
+        font-size: 1rem;
+    }
+}
+
+.crossout{
+    width: 110%;
+    height: 3px;
+    background-color: $secondary-text-color;
+    position: absolute;
+    top: 50%;
+    margin-top: -1.5px;
+    margin-left: -5%;
+}
+
+.tbc{
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $primary-text-color;
+    margin: 0;
+    position: relative;
+
+    @include lg{
+        font-size: 1rem;
+    }
+}
+
+.discountContainer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.calculatedDisocunt{
+    border-radius: 1rem;
+    background-color: $highlight-background-color;
+    color: $primary-btn-text-color;
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    margin-right: 1rem;
+
+    @include lg{
+        padding: 0.5rem 0.5rem;
+        margin-right: 0.5em;
+    }
+}
+
+.discountPrice{
+    font-size: 1.5rem;
+    color: $primary-text-color;
+    font-weight: 600;
+    line-height: 2.0625rem;
+    margin: 0;
+    text-align: right;
+
+    @include lg{
+        font-size: 1rem;
+    }
+}
+
+.cardBtnGroup{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.cartBtn{
+    @include globalButton;
+    width: 100%;
+    border: 2px solid $secondary-btn-border-color;
+    outline: none;
+    background-color: $primary-background-color;
+    color: $secondary-btn-text-color;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    padding: 0.875rem 0;
+    margin-bottom: 1rem;
+}
+
+.purchaseBtn{
+    @include globalButton;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: $highlight-background-color;
+    color: $primary-btn-text-color;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    padding: 0.875rem 0;
+}
+
+.purchasedText{
+    text-align: center;
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+}

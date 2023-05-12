@@ -1,0 +1,62 @@
+
+.frontpage-table{
+    width: 100%;
+}
+
+.frontpage-table td{
+    vertical-align: middle;
+}
+
+.delete-btn{
+    margin: 5px;
+}
+.input-item{
+    margin: 20px 0;
+}
+.input-item-img{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+.url-input{
+    width: 500px !important;
+    height: 25px;
+    font-size: 18px;
+}
+.uploaded-img{
+    width: 300px;
+    margin: 10px 0;
+}
+
+.marquee {
+    height: 35px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 8px 0 4px 0;
+}
+
+.marquee div{
+    position: absolute;
+    width: 100%;
+    left: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.marquee .marquee1{
+    animation: marquee 10s linear infinite
+}
+
+.marquee .marquee2{
+    animation: marquee 10s linear 5s infinite
+}
+  
+
+@keyframes marquee {
+    0% { left: 100%; }
+    100% {left: -100%}
+  }

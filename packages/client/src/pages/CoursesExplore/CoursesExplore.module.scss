@@ -1,0 +1,190 @@
+@import '../../styles/color.scss';
+@import '../../styles/input.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    padding: 5%;
+    box-sizing: border-box;
+    width: 100%;
+
+    @include lg{
+        padding: 0;
+    }
+}
+
+.topBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include lg{
+        padding: 1.5rem;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}
+
+.title{
+    display: flex;
+    align-items: baseline;
+
+    @include lg{
+        width: 100%;
+    }
+}
+
+.largerTitle{
+    font-size: 1.875rem;
+    line-height: 2.625rem;
+    color: $secondary-text-color;
+
+    @include lg{
+        font-size: 1.5rem;
+    }
+}
+
+.category{
+    font-size: 1.25rem;
+    color: $primary-text-color;
+    line-height: 2.625rem;
+    display: flex;
+    margin-left: .5rem;
+    
+
+    span{
+        color: $secondary-text-color;
+
+        margin-right: .5rem;
+    }
+}
+
+.filters{
+    display: flex;
+    @include lg{
+        width: 100%;
+    }
+}
+
+.selectGroup{
+    width: 15rem;
+    position: relative;
+
+    @include lg{
+        width: 100%;
+    }
+}
+
+.selectGroup:first-of-type{
+    margin-right: 2rem;
+}
+
+.selectLabel{
+    color: $dark-blue-text-color;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.375rem;
+    font-weight: 600;
+
+    @include lg{
+        font-size: 0.875rem;
+    }
+}
+
+.selectField{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding-bottom: 0.125rem;
+    border-bottom: 2px solid $border-color; 
+    cursor: pointer;
+}
+
+.selectedField{
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin: 0;
+
+    @include lg{
+        font-size: 1rem;
+    }
+}
+
+.arrowIcon{
+    height: 1.5rem;
+}
+
+.dropdown{
+    position: absolute;
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    background-color: $primary-background-color;
+    top: 4rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 1rem 0 rgba(0, 0, 0, 0.2);
+    max-height: 24rem;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    z-index: 2;
+}
+
+.dropdown::-webkit-scrollbar{
+    display: none;
+}
+
+.sortDropdown{
+    right: 0;
+}
+
+.dropdownItem{
+    display: flex;
+    align-items: center;
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    padding: 1.25rem 1rem;
+
+    @include lg{
+        font-size: 1rem;
+    }
+}
+
+.dropdownItem:hover{
+    background-color: $dropdown-option-hover-color;
+}
+
+.coursesListContainer{
+    display: flex;
+    flex-wrap: wrap;
+    // gap: 1%;
+
+    @media screen and (max-width: 1300px) {
+        // max-width: calc(50rem + 1.67%);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @include lg{
+        display: block;
+        width: 100%;
+        max-width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.coursesListContainer > * + * {
+    margin-left: 1%;
+
+    @include lg{
+        margin-left: 0
+    }
+}
+
+.card{    
+    margin-top: 1em;
+    margin-bottom: 1em;
+}

@@ -1,0 +1,95 @@
+@layout('layout/main')
+
+@section('content')
+{{style('styles/tutors')}}
+<div class="full-page-container">
+    @!component('components/breadcrumb', {
+        items:[
+        {
+            link: '/cms',
+            page: '主頁'
+        },{
+            link: '/cms/tutors',
+            page: '導師'
+        }
+        ],
+        currentPage: '加入新導師'
+    })
+
+    <h2 class="page-title">加入新導師</h2>
+    @if(old('notification'))
+    <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+    <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    <form action="/cms/tutors/add" method="POST" enctype="multipart/form-data" onsubmit="submitForm()">
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>導師名稱：</label>
+            <div class="col-sm-10">
+                <input placeholder='請輸入導師名稱...' name="name" class="name-input form-control form-control-sm" required />
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>導師電郵：</label>
+            <div class="col-sm-10">
+                <input type="email" name="email" class="email-input form-control form-control-sm" placeholder="請輸入電郵地址"
+                    required />
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>課程管理員：</label>
+            <div class="col-sm-10">
+                <select name="course_developer_id" class="form-select course-developer-input">
+                    @each(course_developer in course_developers)
+                    <option value="{{course_developer.id}}">{{course_developer.display_name}}</option>
+                    @endeach
+                </select>
+            </div>
+        </div>
+        <div class="input-item-img row">
+            <label class="col-form-label col-sm-12"><span class="required">*</span>導師頭像上載：</label>
+            <img src="/assest/placeholder-image.png" class="uploaded-img" />
+            <div class="col-sm-12">
+                <input type="file" name="avator" class='image-input form-control form-control-sm'
+                    accept=".png,.svg,.jpg,.jpeg" onchange="changeAvator(event)" required />
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-12"><span class="required">*</span>導師簡介：</label>
+            <div class="col-sm-12">
+                <div id="editor">
+                    <p>請在此輸入導師簡介⋯⋯</p>
+                </div>
+            </div>
+
+            <input class="description-input form-control form-control-sm" name='description' />
+        </div>
+        <div class="required-label"><span class="required">*</span>為必填項目</div>
+        <button class="submit-btn btn btn-primary">加入新導師</button>
+    </form>
+    <script>
+
+        function changeAvator(event) {
+            var tgt = event.target || window.event.srcElement,
+                files = tgt.files;
+
+            // FileReader support
+            if (FileReader && files && files.length) {
+                var fr = new FileReader();
+                fr.onload = function () {
+                    document.querySelector('.uploaded-img').src = fr.result;
+                }
+                fr.readAsDataURL(files[0]);
+            }
+        }
+        function submitForm(event) {
+
+            document.querySelector('.description-input ').value = document.querySelector('.ql-editor').innerHTML
+            document.querySelector('.display-number-input ').value = document.querySelector('.display-number-input ').checked
+        }
+
+    </script>
+
+</div>
+@endsection

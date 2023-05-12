@@ -1,0 +1,59 @@
+@import '../../styles/color.scss';
+@import '../../styles/button.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    padding: 5em 5.875em;
+    width: 50rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+
+    @include lg{
+        padding: 5em 5%;
+        width: 90vw;
+    }
+}
+
+.msg{
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    color: $secondary-text-color;
+    margin-top: 1.5em;
+}
+
+.btnGroup{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cancelBtn{
+    @include globalButton;
+    background-color: $disabled-color;
+    color: $primary-btn-text-color;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    padding: 0.875em 0;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    margin-top: 2.5em;
+    margin-right: 1em;
+}
+
+.confirmBtn{
+    @include globalButton;
+    background-color: $highlight-background-color;
+    color: $primary-btn-text-color;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    padding: 0.875em 0;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    margin-top: 2.5em;
+}

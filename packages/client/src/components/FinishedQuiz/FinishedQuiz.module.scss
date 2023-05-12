@@ -1,0 +1,120 @@
+@import '../../styles/color.scss';
+@import '../../styles//button.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    padding: 5em 5.875em;
+    box-sizing: border-box;
+    width: 43.75rem;
+
+    @include lg{
+        padding: 10%;
+        width: 90vw;
+        max-height: 90vh;
+    }
+}
+
+.msg{
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 2rem;
+    margin-bottom: 2.5em;
+
+    @include lg{
+        margin-bottom: 1em;
+    }
+}
+
+.result{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 0.125rem solid $border-color;
+    width: 15rem;
+
+}
+
+.resultTitle{
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 2rem;
+    margin: 0;
+    text-align: center;
+}
+
+.marks{
+    padding: 1em 0;
+    box-sizing: border-box;
+    color: $dark-blue-text-color;
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: 2.25rem;
+    text-align: center;
+    margin: 0;
+
+    @include lg{
+        padding: 0.5em 0;
+    }
+}
+
+.startAgainBtn{
+    @include globalButton;
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+    border: none;
+    outline: none;
+    padding: 0.875em;
+    width: 100%;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    margin-top: 3em
+}
+
+.btnGroup{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 3em;
+
+    @include lg{
+        flex-direction: column;
+    }
+}
+
+.certBtn{
+    @include globalButton;
+    background-color: transparent;
+    border: 1.5px solid $secondary-btn-border-color;
+    font-size: 1.25rem;
+    padding: 0.875em;
+    color: $secondary-btn-text-color;
+    font-weight: 600;
+    line-height: 1.5rem;
+    width: 45%;
+
+    @include lg{
+        width: 100%;
+        margin-bottom: 1em;
+    }
+}
+
+.answerBtn{
+    @include globalButton;
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+    border: none;
+    outline: none;
+    padding: 0.875em;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    width: 45%;
+
+    @include lg{
+        width: 100%;
+    }
+}

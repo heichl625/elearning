@@ -1,0 +1,87 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    flex-grow: 1;
+    margin-top: 2.5em;
+    position: relative;
+
+}
+
+.cardBlock{
+    border: 1px solid $border-color;
+    padding: 1.5em 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1em;
+
+    @include lg{
+        align-items: flex-start;
+    }
+}
+
+.cardLeft{
+    display: flex;
+    align-items: center;
+
+    @include lg{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.icon{
+    width: 3.125rem;
+    height: 2rem;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    border: 1px solid $border-color;
+    margin-right: 2.875em;
+}
+
+.cardInfoContainer{
+    flex-grow: 1;
+}
+
+.cardHolder{
+    font-size: 1.25rem;
+    line-height: 2rem;
+    color: $secondary-text-color;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.cardInfo{
+    color: $disabled-text-color;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin: 0;
+
+    @include lg{
+        margin: 0.5em 0 0;
+    }
+}
+
+.deleteBtn{
+    color: #FF4D50;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    cursor: pointer;
+
+    @include lg{
+        margin: 0;
+    }
+}
+
+.addCard{
+    color: $primary-text-color;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    margin-top: 5em;
+}
+

@@ -1,0 +1,76 @@
+@layout('layout/main')
+
+@section('content')
+{{style('styles/coupons')}}
+<div class="full-page-container">
+    @!component('components/breadcrumb', {
+        items:[
+        {
+            link: '/cms',
+            page: '主頁'
+        },
+        {
+            link: '/cms/coupons',
+            page: '優惠券'
+        }
+        ],
+        currentPage: '修改優惠券 ('+coupon.title+')'
+    })
+
+    <h2 class="page-title">修改優惠券</h2>
+    @if(old('notification'))
+    <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+    <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    <form action="/cms/coupons/edit/{{coupon.id}}" method="POST" enctype="multipart/form-data">
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>優惠名稱：</label>
+            <div class="col-sm-10">
+                <input placeholder='請輸入優惠名稱...' name="title" class="title-input form-control form-control-sm" required
+                    value="{{coupon.title}}" />
+            </div>
+
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>優惠簡介：</label>
+            <div class="col-sm-10">
+                <textarea placeholder='請輸入優惠簡介...' name="description"
+                    class="description-input form-control form-control-sm" required>{{coupon.description}}</textarea>
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>優惠金額：HKD$</label>
+            <div class="col-sm-10">
+                <input type="number" name="discount" class="discount-input form-control form-control-sm" required
+                    value="{{coupon.discount}}" />
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>優惠開始日期：</label>
+            <div class="col-sm-10">
+                <input type="date" name="start_on" class="date-input form-control form-control-sm" required
+                    value="{{coupon.start_on}}" />
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>優惠結束日期：</label>
+            <div class="col-sm-10">
+                <input type="date" name="expiry_on" class="date-input form-control form-control-sm" required
+                    value="{{coupon.expiry_on}}" />
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>優惠碼：</label>
+            <div class="col-sm-10">
+                <input type="text" name="code" class="code-input form-control form-control-sm" required
+                    value="{{coupon.code}}" />
+            </div>
+        </div>
+        <div class="required-label"><span class="required">*</span>為必填項目</div>
+        <button class="submit-btn btn btn-primary">修改優惠券</button>
+    </form>
+
+</div>
+@endsection

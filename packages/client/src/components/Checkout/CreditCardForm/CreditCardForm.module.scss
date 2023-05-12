@@ -1,0 +1,210 @@
+@import '../../../styles/button.scss';
+@import '../../../styles/color.scss';
+@import '../../../styles/input.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    flex-grow: 1;
+    position: relative;
+    min-height: 10rem;
+
+    @include lg{
+        background-color: $primary-background-color;
+        padding: 0 5% 5em;
+    }
+}
+
+.sectionTitle{
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    margin: 3em 0 2em;
+}
+
+.savedCardContainer{
+    display: flex;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.radio{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 100%;
+    border: solid 1px $border-color;
+    margin-right: 2em;
+    cursor: pointer;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.activeRadio{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    box-sizing: border-box;
+    background-color: $primary-btn-background-color;
+}
+
+.cardBrand{
+    border: 1px solid $border-color;
+    width: 3.125rem;
+    height: 2rem;
+    object-fit: contain;
+    border-radius: 0.25rem;;
+    margin-right: 1em;
+}
+
+.cardDesc{
+    font-size: 0.875rem;
+    color: $secondary-text-color;
+}
+
+.form{
+    width: 100%;
+    margin-top: 4rem;
+    display: flex;
+    justify-content: space-between;
+
+    @include lg{
+        justify-content: center;
+        margin-top: 1.5em;
+    }
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+
+    @include lg{
+        flex-basis: 100%;
+    }
+}
+
+.inputGroup{
+    @include inputGroup;
+    border-bottom: 1.5px solid $border-color;
+    margin-bottom: 2.5rem;
+    height: 2.125rem;
+}
+
+.inputField{
+    @include inputField;
+    border: none;
+    font-size: 1.125rem;
+    color: $secondary-text-color;
+    width: 100%;
+}
+
+.inputField:disabled{
+    height: 100%;
+}
+
+.floatingLabel{
+    @include floatingLabel;
+}
+
+.inputField:focus ~ .floatingLabel,
+.inputField:not(:focus):valid ~ .floatingLabel{
+    @include floatingLabel-focus;
+}
+
+.checkboxContainer{
+    display: flex;
+    align-items: center;
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+
+}
+
+.checkbox{
+    width: 1.375rem;
+    height: 1.375rem;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    @include lg{
+        position: fixed;
+        display: block;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: $primary-background-color;
+        z-index: 2;
+        padding: 1em 1.5em;
+        box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.15)
+    }
+}
+
+.mobileFooterPrice{
+    display: none;
+
+    @include lg{
+        display: block;
+    }
+}
+
+.footerPriceRow{
+    display: flex;
+}
+
+
+.mobilePriceText{
+    color: $secondary-text-color;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    margin: 0 3.625rem 0 0;
+}
+
+.mobilePriceTotal{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.mobilePriceTotalText{
+    color: $primary-text-color;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+
+.payBtn{
+    @include globalButton;
+    padding: 0.875rem 9.25rem;
+    border: none;
+    color: $primary-btn-text-color;
+    background-color: $primary-btn-background-color;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    outline: none;
+
+    @include lg{
+        width: 100%;
+        padding: 0.875em 0;
+    }
+}
+
+.error{
+    color: $error-text-color;
+    font-size: 0.875rem;
+}
+
+.hidden{
+    @include lg{
+        display: none;
+    }
+}

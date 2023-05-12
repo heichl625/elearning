@@ -1,0 +1,163 @@
+@import '../../styles/color.scss';
+@import '../../styles/button.scss';
+@import '../../styles/responsive.scss';
+
+.container {
+    width: 100%;
+    padding: 5.625rem 10%;
+    box-sizing: border-box;
+    
+
+    @include lg{
+        padding: 0;
+        background-color: #f0f6fa;
+    }
+}
+
+.tab{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+
+    @include lg{
+        padding: 0 5%;
+        background-color: $primary-background-color;
+        cursor: pointer;
+    }
+}
+
+.tabClosed{
+    @include lg{
+        margin-bottom: 0.5em;
+    }
+}
+
+.arrow{
+    display: none;
+    width: 1.5rem;
+    height: 1.5rem;
+
+    @include lg{
+        display: block;
+    }
+}
+
+.sectionTitle{
+    color: $secondary-text-color;
+    font-weight: 600;
+    line-height: 2.625rem;
+    font-size: 1.875rem;
+
+    @include lg{
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+    }
+}
+
+.infoSection{
+   position: relative;
+   min-height: 30rem;
+}
+
+.userInfo{
+    display: flex;
+    justify-content: space-between;
+
+    @include lg{
+        flex-direction: column;
+    }
+}
+
+.billingInfo{
+    flex-basis: 45%;
+
+    @include lg{
+        flex-basis: 100%;
+    }
+}
+
+.personalInfo{
+    flex-basis: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+
+    >div{
+        @include lg{
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+
+    @include lg{
+        flex-basis: 100%;
+    }
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 4rem;
+
+    @include lg{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        background-color: $primary-background-color;
+        padding: 1em 1.5em;
+        box-sizing: border-box;
+        box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.15)
+    }
+}
+
+.continueBtn{
+    @include globalButton;
+    padding: 0.875rem 9.25rem;
+    border: none;
+    color: $primary-btn-text-color;
+    background-color: $primary-btn-background-color;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    outline: none;
+
+    @include lg{
+        padding: 0.875em 0;
+        width: 100%;
+    }
+}
+
+.loginFirstContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 20rem;
+}
+
+.loginFirstText{
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    text-align: center;
+}
+
+.loginFirstBtn{
+    @include globalButton;
+    font-size: 1.25rem;
+    padding: 0.875em 0;
+    width: 20rem;
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+    border: none;
+    outline: none;
+}
+
+.hidden{
+    @include lg{
+        display: none;
+    }
+}

@@ -1,0 +1,211 @@
+@layout('layout/main')
+
+@section('content')
+{{ style('styles/dashboard' )}}
+<script>
+    let dynamicColors = function() {
+       let r = Math.floor(Math.random() * 255);
+       let g = Math.floor(Math.random() * 255);
+       let b = Math.floor(Math.random() * 255);
+       return "rgb(" + r + "," + g + "," + b + ")";
+    };
+</script>
+<div class='dashboard-container'>
+    <div class='dashboard-section'>
+        <h3 class="dashboard-section-title">每日銷售額</h3>
+        <canvas id='revenueChart' class='chart-canvas'></canvas>
+        <script>
+            fetch('/cms/dashboard/get-revenue?by=date')
+                .then(res => res.json())
+                .then(data => {
+                    let { sales } = data;
+                    if(sales.length > 0){
+                        let ctx = document.getElementById('revenueChart');
+                        let config = {
+                            type: 'line',
+                            data: {
+                                labels: sales.map(item => moment(item.date).format('MM-DD')),
+                                datasets: [{
+                                    label: '每天銷售額',
+                                    data: sales.map(item => item.sum),
+                                    fill: false,
+                                    borderColor: 'rgb(75,192, 192)',
+                                    tension: 0.1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        ticks: {
+                                            // Include a dollar sign in the ticks
+                                            callback: function(value, index, values) {
+                                                return 'HK$' + value + '.00';
+                                            }
+                                        }
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: (context) => {
+                                                let label = context.dataset.label || '';
+
+                                                if(label){
+                                                    label += ': ';
+                                                }
+                                                if(context.parsed.y !== null){
+                                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'HKD' }).format(context.parsed.y);
+                                                }
+                                                return label;
+                                            }
+                                        }
+                                    } 
+                                },
+
+                            }
+                        }
+                        const salesChart = new Chart(ctx, config)
+                    }
+                })
+        
+        </script>
+    </div>
+    <div class='dashboard-section'>
+        <h3 class="dashboard-section-title">最高銷量課程</h3>
+        <canvas id='topSellingChart' class='chart-canvas'></canvas>
+        <script>
+            fetch('/cms/dashboard/get-top-selling')
+                .then(res => res.json())
+                .then(data => {
+                    let { courses } = data;
+                    if(courses.length > 0){
+                        let topSellingChartRef = document.getElementById('topSellingChart');
+                        let config = {
+                            type: 'bar',
+                            data: {
+                                labels: courses.map(item => item.course_title),
+                                datasets: [{
+                                    label: '銷量',
+                                    data: courses.map(item => item.total_sales),
+                                    backgroundColor: courses.map(item => dynamicColors()),
+                                }]
+                            },
+                            options: {
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    },
+                                },
+                                scales: {
+                                    y: {
+                                        ticks: {
+                                            stepSize: 1
+                                        }
+                                    }
+                                }
+
+                            },
+                        }
+                        const topSellingChart = new Chart(topSellingChartRef, config)
+                    }
+                })
+        
+        </script>
+    </div>
+    <div class='dashboard-section'>
+        <h3 class="dashboard-section-title">最高銷量導師</h3>
+        <canvas id='topSellingInstructorChart' class='chart-canvas'></canvas>
+        <script>
+            fetch('/cms/dashboard/get-top-selling-instructor')
+                .then(res => res.json())
+                .then(data => {
+                    let { instructors } = data;
+                    if(instructors.length > 0){
+                        let topSellingInstructorChartRef = document.getElementById('topSellingInstructorChart');
+                        let config = {
+                            type: 'bar',
+                            data: {
+                                labels: instructors.map(item => item.instructor_name),
+                                datasets: [{
+                                    label: '銷量',
+                                    data: instructors.map(item => item.total_sales),
+                                    backgroundColor: instructors.map(item => dynamicColors()),
+                                }]
+                            },
+                            options: {
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    },
+                                },
+                                scales: {
+                                    y: {
+                                        ticks: {
+                                            stepSize: 1
+                                        }
+                                    }
+                                }
+
+                            },
+                        }
+                        const topSellingChart = new Chart(topSellingInstructorChartRef, config)
+                    }
+                })
+        
+        </script>
+    </div>
+    <div class='dashboard-section'>
+        <div class='dashboard-card-container'>
+            <div class="dashboard-section-title-container">
+                <h3 class="dashboard-section-title">總銷售額</h3>
+            </div>
+            <h1 id="dashboard-total-sales"></h1>
+            <script>
+                fetch('/cms/dashboard/get-total-sales')
+                    .then(res => res.json())
+                    .then(data => {
+                        let totalSalesRef = document.querySelector('#dashboard-total-sales');
+                        totalSalesRef.innerHTML = data.total_sales;
+                    });
+            </script>
+        </div>
+    </div>
+    <div class='dashboard-section'>
+        <div class='dashboard-card-container'>
+            <div class="dashboard-section-title-container">
+                <h3 class="dashboard-section-title">待審批的交易</h3>
+                <a href='/cms/transactions'>前往</a>
+            </div>
+            <h1 id="dashboard-pending-transaction-number"></h1>
+            <script>
+                fetch('/cms/get-pending-transaction-number')
+                    .then(res => res.json())
+                    .then(data => {
+                        let pendingTransactionRef = document.querySelector('#dashboard-pending-transaction-number');
+                        pendingTransactionRef.innerHTML = data.pendingNumber;
+                    });
+            </script>
+        </div>
+    </div>
+    <div class='dashboard-section'>
+        <div class='dashboard-card-container'>
+            <div class="dashboard-section-title-container">
+                <h3 class="dashboard-section-title">待審批的評價</h3>
+                <a href='/cms/comments'>前往</a>
+            </div>
+            <h1 id="dashboard-pending-comment-number"></h1>
+            <script>
+                fetch('/cms/get-pending-comments-number')
+                    .then(res => res.json())
+                    .then(data => {
+                        let pendingCommentRef = document.querySelector('#dashboard-pending-comment-number');
+                        pendingCommentRef.innerHTML = data.pendingNumber;
+                    });
+            </script>
+        </div>
+    </div>
+</div>
+@endsection

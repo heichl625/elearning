@@ -1,0 +1,327 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/input.scss';
+@import '../../../styles/button.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    margin-top: 3.125em;
+    flex-grow: 1;
+    position: relative;
+    max-width: 50rem;
+}
+
+.sectionTitle{
+    color: $secondary-text-color;
+    font-size: 1.875rem;
+    line-height: 2.625rem;
+    font-weight: 600;
+    margin: 0;
+
+    @include lg{
+        font-size: 1.5rem;
+    }
+}
+
+.personalInfoContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.avator{
+    margin-top: 1.875rem;
+    width: 8rem;
+    height: 8rem;
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+
+    @include lg{
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.inputForm{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.inputContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4em;
+    min-height: 2.25rem;
+
+    @include lg{
+        flex-wrap: wrap;
+        margin-bottom: 2.5em;
+    }
+}
+
+.inputGroup{
+    @include inputGroup;
+    flex-grow: 1;
+}
+
+.areaCodeGroup{
+    @include inputGroup;
+    flex-basis: 10%;
+    border-bottom: 1.5px solid $border-color;
+    display: flex;
+    justify-content: center;
+
+    @include lg{
+        width: 30%;
+    }
+}
+
+.halfSelectGroup{
+    @include inputGroup;
+    flex-basis: 48%;
+    border-bottom: 1.5px solid $border-color;
+    display: flex;
+    justify-content: space-between;
+
+    @include lg{
+        flex-basis: 100%;
+        width: 100%;
+        margin-bottom: 2.5em;
+    }
+}
+
+.halfSelectGroup:nth-of-type(even){
+    @include lg{
+        margin-bottom: 0;
+    }
+}
+
+.selectLabel{
+    @include floatingLabel;
+    @include floatingLabel-focus;
+}
+
+.dropdownBtn{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.selectedOption{
+    margin: 0;
+    line-height: 1.5rem;
+}
+
+.dropdownIcon{
+    height: 1.5rem;
+    width: 1.5rem;
+    object-fit: cover;
+    margin-left: 1.5rem;
+}
+
+.areaSearchContainer{
+
+    display: flex;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    border-bottom: 2px solid $primary-text-color;
+    align-items: center;
+
+
+    label{
+        flex-shrink: 0;
+        color: $secondary-text-color;
+        font-size: 1rem;
+    }
+    
+    input{
+        outline: none;
+        border: none;
+        font-size: 1rem;
+        padding: 0;
+        margin: 0;
+        line-height: 1.25rem;;
+    }
+}
+
+.dropdown{
+    background-color: #ffffff;
+    position: absolute;
+    max-height: 16rem;
+    top: 2rem;
+    overflow-y: auto;
+    width: 12rem;
+    z-index: 3;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 1rem 0 rgba(0, 0, 0, 0.2);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    @include lg{
+        left: 0;
+    }
+}
+
+.dropdown::-webkit-scrollbar{
+    display: none;
+}
+
+.dropdownOptions{
+    color: $secondary-text-color;
+    padding: 1.25rem 1rem;
+}
+
+.dropdownOptions:hover{
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+}
+
+.halfWidthInputGroup{
+    @include inputGroup;
+    flex-basis: 48%;
+
+    @include lg{
+        flex-basis: 100%;
+        width: 100%;
+        margin-bottom: 2em;
+    }
+}
+
+.halfWidthInputGroup:nth-of-type(even){
+    @include lg{
+        flex-basis: 100%;
+        width: 100%;
+        margin-bottom: 0;
+    }
+}
+
+.phoneInputGroup{
+    @include inputGroup;
+    flex-basis: 85%;
+
+    @include lg{
+        flex-basis: 65%;
+        width: 65%;
+    }
+}
+
+.inputField{
+    @include inputField;
+    width: 100%;
+    font-size: 1.125rem;
+    line-height: 2rem;
+    color: $secondary-text-color
+}
+
+.floatingLabel{
+    @include floatingLabel;
+}
+
+.inputField:focus ~ .floatingLabel,
+.inputField:not(:focus):valid ~ .floatingLabel{
+    @include floatingLabel-focus
+}
+
+.usernameRules{
+    color: $disabled-text-color;
+    font-size: 0.8125rem;
+    line-height: 1rem;
+}
+
+.error{
+    color: $error-text-color;
+    font-size: 0.8125rem;
+    line-height: 1rem;
+}
+
+.interestSection{
+    width: 100%;
+    margin-bottom: 3em;
+}
+
+.interestSectionTitle{
+    font-size: 1.125rem;
+    color: $primary-text-color;
+    line-height: 2rem;
+    margin-top: 0;
+}
+
+.interestContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.interestOption{
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+
+    p{
+        color: $secondary-text-color;
+        font-size: 1.125rem;
+        line-height: 1.5rem;
+        margin-left: 1rem;
+    }
+}
+
+.radioBtn{
+    border: 1px solid $disabled-color;
+    border-radius: 100%;
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.selectedInterest{
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: $primary-btn-background-color;
+    border-radius: 100%;
+}
+
+.submitBtn{
+    @include globalButton;
+    padding: 0.875em 10.5em;
+    max-width: 23.5em;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    color: $primary-btn-text-color;
+    background-color: $primary-btn-background-color;
+    border: none;
+    outline: none;
+
+    @include lg{
+        padding: 0.875em 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+.divider{
+    width: 100%;
+    background-color: $border-color;
+    height: 1px;
+}
+
+.passwordModifyContainer{
+    margin-top: 3em;
+    width: 100%;
+    max-width: 50rem
+}
+

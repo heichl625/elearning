@@ -1,0 +1,182 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/responsive.scss';
+@import '../../../styles/skeleton.scss';
+
+.container{
+    width: 100%;
+    overflow: hidden;
+}
+
+.seciontTitle{
+    font-size: 2.1875rem;
+    font-weight: 600;
+    line-height: 3.0625rem;
+    color: $primary-text-color;
+    max-width: 75rem;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 0 auto 1em;
+
+    @include lg{
+        padding: 0 5%;
+        font-size: 1.25rem;
+        line-height: normal;
+    }
+}
+
+.instructorContent{
+    display: flex;
+    justify-content: center;
+    padding: 6rem 0;
+    width: 100%;
+    background-color: #FEF5EA;
+    box-sizing: border-box;
+
+    @include lg{
+        padding: 1.5em 5%;
+    }
+}
+
+.instructorWrapper{
+    max-width: 75rem;
+    width: 90%;
+    display: flex;
+    
+    @include lg{
+        flex-direction: column;
+    }
+}
+
+.left{
+    @include lg{
+        display: flex;
+        align-items: center;
+    }
+}
+
+.avator{
+    width: 20rem;
+    height: 20rem;
+    object-fit: cover;
+
+    @include lg{
+        width: 6.5rem;
+        height: 6.5rem;
+        margin-right: 1em;
+    }
+}
+
+.coverSkeleton{
+    width: 20rem;
+    height: 20rem;
+    background-color: $skeleton-color;
+    overflow: hidden;
+    position: relative;
+
+    @include lg{
+        width: 6.5rem;
+        height: 6.5rem;
+        margin-right: 1em;
+    }
+}
+
+.coverSkeleton::before{
+    @include skeleton
+}
+
+.instructorName{
+    $color: $secondary-text-color;
+    font-size: 1.875rem;
+    line-height: 2.625rem;
+
+    @include lg{
+        font-size: 1.25rem;
+        line-height: 2.5rem;
+    }
+}
+
+.nameSkeleton{
+    height: 2.625rem;
+    width: 10rem;
+    background-color: $skeleton-color;
+    overflow: hidden;
+    position: relative;
+    margin-top: 1em;
+
+    @include lg{
+        height: 2.5rem;
+        width: 8rem;
+    }
+}
+
+.nameSkeleton::before{
+    @include skeleton
+}
+
+.right{
+    margin: 0;
+    margin-left: 4.75rem;
+    font-size: 1.25rem;
+    color: $secondary-text-color;
+    line-height: 2.5rem;
+    max-width: 58.25rem;
+
+    @include lg{
+        max-width: 100%;
+        margin: 0;
+        font-size: 1rem;
+        line-height: 2rem;
+    }
+
+    a{
+        color: $primary-text-color;
+    }
+
+    li{
+        margin-left: -1em;
+    }
+    p{
+        margin: 0;
+    }
+}
+
+.hidden{
+    display: none;
+}
+
+.contentSkeleton{
+    margin-left: 3em;
+    width: 100%;
+
+    @include lg{
+        margin-left: 0;
+    }
+
+    .skeleton:first-of-type{
+        width: 90%;
+    }
+    .skeleton:nth-of-type(2){
+        width: 80%;
+    }
+    .skeleton:nth-of-type(3){
+        width: 70%;
+    }
+    .skeleton:nth-of-type(4){
+        width: 60%
+    }
+    .skeleton:nth-of-type(5){
+        width: 50%
+    }
+}
+
+.skeleton{
+    height: 3rem;
+    margin: 1em 0;
+    background-color: $skeleton-color;
+    overflow: hidden;
+    position: relative;
+}
+
+.skeleton::before{
+    @include skeleton
+}

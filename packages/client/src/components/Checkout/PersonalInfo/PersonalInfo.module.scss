@@ -1,0 +1,205 @@
+@import '../../../styles/input.scss';
+@import '../../../styles/color.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    margin-top: 3.125rem;
+
+    @include lg{
+        margin-top: 0;
+        padding: 1em 5%;
+        background-color: $primary-background-color;
+        display: none;
+    }
+}
+
+.mobileContainer{
+    @include lg{
+        display: block;
+    }
+}
+
+.inputRow{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    @include lg{
+        flex-wrap: wrap;
+    }
+}
+
+.inputGroup{
+    @include inputGroup;
+    width: 100%;
+}
+
+.shortInput{
+    width: 45%;
+
+    @include lg{
+        width: 100%;
+        margin-bottom: 1.5em;
+    }
+}
+
+.areaCodeInput{
+    width: 15%;
+}
+
+.phoneInput {
+    width: 75%;
+}
+
+.inputField{
+    @include inputField;
+    font-size: 1.125rem;
+    padding: 1.25rem 0;
+    line-height: 2rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.inputField:disabled{
+    color: $disabled-text-color;
+    background-color: $primary-background-color;
+}
+
+.selectField{
+    @include inputField;
+    display: flex;
+    justify-content: space-between;
+    color: $secondary-text-color;
+    align-items: center;
+    font-size: 1.125rem;
+    line-height: 2rem;
+    cursor: pointer;
+
+    p{
+        margin: 0;
+        padding: 1.25rem 0;
+        font-size: 1.125rem;
+
+        @include lg{
+            padding: 1em 0;
+        }
+    }
+
+    @include lg{
+        margin-bottom: 1.5em; 
+    }
+}
+
+.selectLabel{
+    @include floatingLabel;
+    @include floatingLabel-focus;
+    margin-top: -0.75rem;
+}
+
+.arrow{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.dropdown{
+    position: absolute;
+    width: 100%;
+    max-height: 18.75rem;
+    z-index: 1;
+    background-color: $primary-background-color;
+    overflow: auto;
+    top: 90%;
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+   
+}
+
+.dropdownItem{
+    padding: 1.75rem 1.875rem;
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    text-decoration: none;
+}
+
+.dropdownItem:hover{
+    background-color: $dropdown-option-hover-color;
+}
+
+.dropdown::-webkit-scrollbar{
+    display: none;
+}
+
+.floatingLabel{
+    @include floatingLabel;
+    font-size: 1.125rem;
+    line-height: 2rem;
+}
+
+.inputField:focus ~ .floatingLabel,
+.inputField:not(:focus):valid ~ .floatingLabel,
+.inputField:disabled ~ .floatingLabel{
+    @include floatingLabel-focus;
+    font-size: 0.9375rem;
+    margin-top: -0.75rem;
+}
+
+.inputField:disabled ~ .floatingLabel{
+    color: $disabled-text-color
+}
+
+.interestSection{
+    width: 100%;
+    margin: 4rem 0;
+}
+
+.interestSectionTitle{
+    font-size: 1.125rem;
+    color: $disabled-text-color;
+    line-height: 2rem;
+}
+
+.interestContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.interestOption{
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+
+    p{
+        color: $secondary-text-color;
+        font-size: 1.125rem;
+        line-height: 1.5rem;
+        margin-left: 1rem;
+    }
+}
+
+.radioBtn{
+    border: 1px solid $disabled-color;
+    border-radius: 100%;
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.selectedInterest{
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: $primary-btn-background-color;
+    border-radius: 100%;
+}
+
+.error{
+    font-size: 0.875rem;
+    color: $error-text-color;
+    margin: 0;
+}
+

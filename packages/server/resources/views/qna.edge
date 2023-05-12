@@ -1,0 +1,79 @@
+@layout('layout/main');
+
+@section('content')
+@!component('components/submenu', { 
+    items: [
+        {
+            title: '加入常見問題',
+            link: '/cms/qna/add'
+        }
+    ],
+    page: '常見問題'
+})
+{{style('styles/courseDeveloper')}}
+<div class="inner-container">
+    @if(keywords)
+        @!component('components/breadcrumb', {
+            items:[
+            {
+                link: '/cms',
+                page: '主頁'
+            },
+            {
+                link: '/cms/qna',
+                page: '常見問題'
+            }
+            ],
+            currentPage: keywords
+        })
+    @else
+        @!component('components/breadcrumb', {
+            items:[
+            {
+                link: '/cms',
+                page: '主頁'
+            }
+            ],
+            currentPage: '常見問題'
+        })
+    @endif
+    <h1 class="page-title">常見問題一覽</h1>
+    @if(old('notification'))
+        <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+        <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    @if(questions.length === 0)
+    <div>
+        暫未有任何常見問題
+    </div>
+    @else
+    <table class="course-developer-table table table-striped">
+        <tbody>
+            <tr class="course-developer-row">
+                <th>問題</th>
+                <th>最後更新時間</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @if(questions.length > 0)
+            @each(question in questions)
+            <tr class="question-row">
+                <td>{{question.question}}</td>
+                <td>{{question.updated_at}}</td>
+                <td><a href="/cms/qna/{{question.id}}/edit">修改</a></td>
+                <td>
+                    <form action="/cms/qna/{{question.id}}/delete" method="POST"  class="delete-btn">
+                        <button type='submit' onclick="return confirm('你要刪除此常見問題嗎？')" class="btn btn-danger">刪除</button>
+                    </form>
+                </td>
+                
+            </tr>
+            @endeach
+            @endif
+        </tbody>
+    </table>
+    @endif
+</div>
+@endsection

@@ -1,0 +1,92 @@
+@import '../../../styles/button.scss';
+@import '../../../styles/color.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    flex-grow: 1;
+    position: relative;
+    min-height: 10rem;
+    align-items: center;
+    // display: flex;
+}
+
+.alert{
+    @include lg{
+        padding: 0 1rem;
+    }
+}
+
+.hiddenInput{
+    display: none;
+}
+
+.btnContainer{
+    display: flex;
+    // justify-content: flex-end;
+    // align-items: flex-end;
+
+    @include lg{
+        position: fixed;
+        display: block;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: $primary-background-color;
+        z-index: 2;
+        padding: 1em 1.5em;
+        box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.15)
+    }
+}
+
+.mobileFooterPrice{
+    display: none;
+
+    @include lg{
+        display: block;
+    }
+}
+
+.footerPriceRow{
+    display: flex;
+}
+
+
+.mobilePriceText{
+    color: $secondary-text-color;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    margin: 0 3.625rem 0 0;
+}
+
+.mobilePriceTotal{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.mobilePriceTotalText{
+    color: $primary-text-color;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.payBtn{
+    @include globalButton;
+    padding: 0.875em 10em;
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+    outline: none;
+    border: none;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+
+    @include lg{
+        padding: 0.875em 0;
+        width: 100%;
+    }
+}

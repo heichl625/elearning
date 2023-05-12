@@ -1,0 +1,25 @@
+@import '../../styles/color.scss';
+
+.spinner{
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 100%;
+    border: 0.3125rem solid rgba(43,186,238, 0.2);
+    border-left-color: $primary-text-color;
+    background: transparent;
+    animation: rotate-spinner 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -1.5625rem;
+    margin-left: -1.5625rem;
+}
+
+@keyframes rotate-spinner {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg)
+    }
+}

@@ -1,0 +1,48 @@
+.promotion-info-container{
+    display: flex;
+    align-items: center;
+}
+.promotion-info{
+    margin: 0;
+}
+
+.modify-btn{
+    width: 100px;
+    margin: 20px auto;
+}
+
+.input-item{
+    margin: 20px 0;
+}
+.input-item-img{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+.required{
+    color: red;
+}
+.title-input{
+    width: 300px;
+    height: 25px;
+    font-size: 18px;
+}
+.uploaded-img{
+    width: 600px;
+    margin: 10px 0;
+}
+.description-input{
+    width: 400px !important;
+    height: 200px;
+    font-size: 18px;
+    resize: none;
+}
+
+.coupon-input{
+    width: 200px;
+}
+
+.submit-btn{
+    margin-top: 10px;
+}
+

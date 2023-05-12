@@ -1,0 +1,176 @@
+@import '../../styles/color.scss';
+@import '../../styles/button.scss';
+@import '../../styles/input.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    padding: 5rem 5.875rem;
+    width: 43.75rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    scrollbar-width: none;
+
+
+    @include lg{
+        width: 90vw;
+        max-width: 43.75rem;
+    }
+
+    @include md{
+        padding: 3rem 3.125rem;
+        box-sizing: border-box;
+    }
+}
+
+.container::-webkit-scrollbar{
+    display:none;
+}
+
+.titleContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.registerText{
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+}
+
+.registerBtn{
+    color: $highlight-text-color;
+    cursor: pointer;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3.25rem;
+
+    @include md{
+        margin-top: 2rem;
+    }
+}
+
+.inputGroup{
+    @include inputGroup;
+    width: 100%;
+    min-height: 3.25rem;
+    margin-bottom: 2.75rem;
+
+    @include md{
+        margin-bottom: 1em;
+    }
+}
+
+.inputField{
+    @include inputField;
+    width: 100%;
+    height: calc(100% - 0.3125rem);
+    font-size: 1.125rem;
+    padding: 0.5rem 0;
+}
+
+.inputField:focus ~ .floatingLabel,
+.inputField:not(:focus):valid ~ .floatingLabel{
+    @include floatingLabel-focus
+}
+
+.floatingLabel{
+    font-size: 1.125rem;
+    @include floatingLabel
+}
+
+.errorMsg{
+    color: $error-text-color;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    margin-top: 0.5rem;
+}
+
+.rememberAndForgot{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+
+    @include md{
+        margin-bottom: 1.5em;
+    }
+}
+
+.rememberMeContainer{
+    display: flex;
+    align-items: center;
+}
+
+.checkbox{
+    width: 1.375rem;
+    height: 1.375rem;
+    border-radius: 4px;
+    border: 1px solid $checkbox-color;
+
+    @include md{
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+}
+
+.checked{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background-color: $primary-btn-background-color;
+}
+
+.rememberMe{
+    margin-left: 1rem;
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+
+    @include md{
+        font-size: 0.875rem;
+        margin-left: 0.5em;
+    }
+
+}
+
+.forgotPassword{
+    color: $primary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    cursor: pointer;
+
+    @include md{
+        font-size: 0.875rem;
+    }
+}
+
+.loginBtn{
+    @include globalButton;
+    width: 100%;
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+    border: none;
+    padding: 14px 0;
+    margin-bottom: 3.125rem;
+}
+
+.backBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    color: $secondary-text-color;
+    cursor: pointer;
+}
+
+.backIcon{
+    height: 0.5rem;
+    margin-right: 0.875rem;
+}

@@ -1,0 +1,4 @@
+Course Cover: 400px x 250px
+Banner: 1860px x 720px
+Instructor avator: 72px x 72px
+Promotion image: 1280px x 720px

@@ -1,0 +1,218 @@
+@import '../../../styles/button.scss';
+@import '../../../styles/color.scss';
+@import '../../../styles/input.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    width: 100%;
+    position: relative;
+    min-height: 10rem;
+
+
+    @include lg{
+        background-color: $primary-background-color;
+        padding: 1em 5% 5em;
+    }
+}
+
+.sectionTitle{
+    font-size: 1.875rem;
+    color: $secondary-text-color;
+    line-height: 2.625rem;
+    font-weight: 600;
+
+    @include lg{
+        font-size: 1.25rem;
+        line-height: normal;
+    }
+}
+
+.instruction{
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+    margin-bottom: 1rem;
+}
+
+.fileRestriction{
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+    margin: 0
+}
+
+.uploadBtn{
+    @include globalButton;
+    margin-top: 2.25rem;
+    padding: 0.875rem 9.25rem;
+    color: $primary-btn-text-color;
+    background-color: $primary-btn-background-color;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    outline: none;
+    border: none;
+
+    @include lg{
+        width: 100%;
+        padding: 0.875rem 0;
+        box-sizing: border-box;
+        line-height: normal;
+    }
+}
+
+.bottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.left{
+    flex-basis: 50%;
+
+    @include lg{
+        flex-basis: 100%;
+    }
+}
+
+.inputGroup{
+    @include inputGroup;
+    margin-top: 3.5rem
+}
+
+.inputField{
+    @include inputField;
+    font-size: 1.125rem;
+    color: $secondary-text-color;
+    line-height: 2rem;
+    width: 100%;
+}
+
+.inputField:disabled{
+    background-color: $primary-background-color;
+}
+
+.floatingLabel{
+    @include floatingLabel;
+    font-size: 1.125rem;
+}
+
+.inputField:focus ~ .floatingLabel,
+.inputField:not(:focus):valid ~ .floatingLabel,
+.inputField:disabled ~ .floatingLabel{
+    @include floatingLabel-focus;
+}
+
+.right{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    @include lg{
+        position: fixed;
+        display: block;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: $primary-background-color;
+        z-index: 2;
+        padding: 1em 1.5em;
+        box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.15)
+    }
+}
+
+.mobileFooterPrice{
+    display: none;
+
+    @include lg{
+        display: block;
+    }
+}
+
+.footerPriceRow{
+    display: flex;
+}
+
+
+.mobilePriceText{
+    color: $secondary-text-color;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    margin: 0 3.625rem 0 0;
+}
+
+.mobilePriceTotal{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.mobilePriceTotalText{
+    color: $primary-text-color;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.submitBtn{
+    @include globalButton;
+    padding: 0.875rem 8.25rem;
+    color: $primary-btn-text-color;
+    background-color: $primary-btn-background-color;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    outline: none;
+    border: none;
+
+    @include lg{
+        width: 100%;
+        padding: 0.875em 0;
+        box-sizing: border-box;
+        line-height: normal;
+    }
+}
+
+.hiddenBtn{
+    display: none;
+}
+
+.fileDisplayContainer{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3.25rem;
+
+    @include lg{
+        width: 100%;
+        margin-top: 1.5em;
+    }
+}
+
+.fileName{
+    color: $primary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+}
+
+.deleteBtn{
+    color: $disabled-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    cursor: pointer;
+}
+
+.errorText{
+    color: $error-text-color;
+    font-size: 0.875rem;
+}
+
+.hidden {
+    @include lg{
+        display: none;
+    }
+}
+

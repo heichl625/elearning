@@ -1,0 +1,25 @@
+@import '../../styles/color.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    font-size: 3.125rem;
+    line-height: 4.5rem;
+    color: $secondary-text-color;
+    margin-top: 0;
+
+    @include md {
+        font-size: 1.25rem;
+        margin: 0;
+    }
+}
+
+.divider{
+    height: 0.25rem;
+    width: 6.25rem;
+    background-color: #2BBAEE;
+}

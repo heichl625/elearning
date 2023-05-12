@@ -1,0 +1,135 @@
+@layout('layout/main');
+
+@section('content')
+@!component('components/submenu', { 
+    items: [
+        {
+            title: '加入新課程管理員',
+            link: '/cms/course_developers/add'
+        }
+    ],
+    page: '課程管理員'
+})
+{{style('styles/courseDeveloper')}}
+<div class="inner-container">
+    @if(keywords)
+        @!component('components/breadcrumb', {
+            items:[
+            {
+                link: '/cms',
+                page: '主頁'
+            },
+            {
+                link: '/cms/course_developers',
+                page: '課程管理員'
+            }
+            ],
+            currentPage: keywords
+        })
+    @else
+        @!component('components/breadcrumb', {
+            items:[
+            {
+                link: '/cms',
+                page: '主頁'
+            }
+            ],
+            currentPage: '課程管理員'
+        })
+    @endif
+    <h1 class="page-title">課程管理員一覽</h1>
+    @if(old('notification'))
+        <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+        <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    @if(course_developers.length === 0)
+    <div>
+        暫未有任何課程管理員
+    </div>
+    @else
+    <nav class="Page navigation pagination-container">
+        <ul class="pagination">
+            @each(page in range(1, lastPage+1))
+            @if(page == currentPage)
+                    <li class="page-item active">
+                        <a class="page-link" href="?page={{page}}&limit={{limit}}&keywords={{keywords}}">{{page}}</a>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{page}}&limit={{limit}}&keywords={{keywords}}">{{page}}</a>
+                    </li>
+            @endif
+        @endeach
+        </ul>
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="以顯示名稱/電郵搜尋" aria-label="Search" name="keywords" />
+            <button class="btn btn-outline-primary" type="submit">搜尋</button>
+        </form>
+    </nav>
+    <table class="course-developer-table table table-striped">
+        <tbody>
+            <tr class="course-developer-row">
+                <th>顯示名稱</th>
+                <th>電郵</th>
+                <th>最後更新時間</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @if(course_developers.length > 0)
+            @each(course_developer in course_developers)
+            <tr class="course-developer-row">
+                <td>{{course_developer.display_name}}</td>
+                <td>{{course_developer.email}}</td>
+                <td>{{course_developer.updated_at}}</td>
+                <td><a href="/cms/course_developers/{{course_developer.id}}/edit">修改</a></td>
+                <td>
+                    <form action="/cms/course_developers/{{course_developer.id}}/delete" method="POST"  class="delete-btn">
+                        <button type='submit' onclick="return confirm('你要刪除此課程管理員嗎？')" class="btn btn-danger">刪除</button>
+                    </form>
+                </td>
+                
+            </tr>
+            @endeach
+            @endif
+        </tbody>
+    </table>
+    <div class="page-limit">
+        <p>每頁顯示：</p>
+        <nav class="Page navigation">
+            <ul class="pagination">
+                @if(limit == 10)
+                <li class="page-item active">
+                    @else
+                <li class="page-item">
+                    @endif
+                    <a class="page-link" href="?page=1&limit=10&keywords={{keywords}}">10</a>
+                </li>
+                @if(limit == 20)
+                <li class="page-item active">
+                    @else
+                <li class="page-item">
+                    @endif
+                    <a class="page-link" href="?page=1&limit=20&keywords={{keywords}}">20</a>
+                </li>
+                @if(limit == 50)
+                <li class="page-item active">
+                    @else
+                <li class="page-item">
+                    @endif
+                    <a class="page-link" href="?page=1&limit=50&keywords={{keywords}}">50</a>
+                </li>
+                @if(limit == 100)
+                <li class="page-item active">
+                    @else
+                <li class="page-item">
+                    @endif
+                    <a class="page-link" href="?page=1&limit=100&keywords={{keywords}}">100</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    @endif
+</div>
+@endsection

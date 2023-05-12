@@ -1,0 +1,36 @@
+@import '../../styles/color.scss';
+@import '../../styles//button.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    width: 43.75rem;
+    padding: 5rem 5.875rem;
+    box-sizing: border-box;
+
+    @include lg{
+        width: 90vw;
+        max-width: 43.75rem;
+    }
+
+    @include md{
+        padding: 3rem 3.125rem;
+    }
+}
+
+.msg{
+    margin-top: 1.625rem;
+    margin-bottom: 2.5rem;
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 2rem;
+}
+
+.logoutBtn{
+    @include globalButton;
+    width: 100%;
+    color: $primary-btn-text-color;
+    background-color: $primary-btn-background-color;
+    padding: 0.875rem 0;
+    outline: none;
+    border: none;
+}

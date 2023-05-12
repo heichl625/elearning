@@ -1,0 +1,47 @@
+@import '../../styles/color.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    padding: 5.625rem;
+    width: 100%;
+    max-width: 83rem;
+    box-sizing: border-box;
+
+    @include md{
+        padding: 1.5rem;
+    }
+}
+.pageTitle{
+    color: $secondary-text-color;
+    font-size: 1.875rem;
+    line-height: 2.625rem;
+    margin-bottom: 2.6875rem;
+}
+
+.content{
+    width: 100%;
+}
+
+.desc{
+    font-size: 1.25rem;
+    line-height: 2.5rem;
+    color: $secondary-text-color;
+}
+
+.section{
+    margin-bottom: 1.5rem;
+}
+
+.sectionTitle{
+    font-size: 1.25rem;
+    line-height: 2.5rem;
+    color: $primary-text-color;
+    margin: 0.25rem 0;
+}
+
+.sectionContent{
+    font-size: 1.25rem;
+    line-height: 2.5rem;
+    color: $secondary-text-color;
+    margin: 0.25rem 0;
+}

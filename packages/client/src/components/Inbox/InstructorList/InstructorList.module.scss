@@ -1,0 +1,133 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    width: 25.5rem;
+    background-color: $light-grey-background-color;
+    padding-top: 2.5rem;
+    box-sizing: border-box;
+
+    @include lg{
+        display: none;
+        width: 100%;
+    }
+
+}
+
+.mobileContainer{
+    display: block;
+}
+
+.titleContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.chatIcon{
+    width: 1.25rem;
+    height: 1.25rem;
+    object-fit: cover;
+    margin-right: 0.5rem;
+}
+
+.title{
+    color: $primary-text-color;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.searchContainer{
+    padding: 0 2.5rem;
+    position: relative;
+}
+
+.searchField{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: 1.5px solid $border-color;
+    border-radius: 1.25rem;
+    padding: 0.625rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    color: $secondary-text-color;
+    box-sizing: border-box;
+    background-color: transparent;
+    margin-bottom: 1.625rem;
+    outline: none;
+}
+
+.searchField::placeholder{
+    color: $placeholder-color;
+}
+
+.searchField:focus{
+    outline: none;
+}
+
+.searchIcon{
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: cover;
+    top: 0.5rem;
+    right: 3.5rem;
+}
+
+.instructorList{
+    border-top: 1px solid $border-color;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.instructorList::-webkit-scrollbar{
+    display: none;
+}
+
+.instructorBlock{
+    border-bottom: 1px solid $border-color;
+    padding: 1.5rem 2.5rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.activeBlock{
+    background-color: rgba(43, 186, 238, 0.15);
+}
+
+.avator{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.instructorName{
+    margin-left: 1.5rem;
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+}
+
+.unreadIndicator{
+    margin-left: auto;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: $primary-btn-background-color;
+    border-radius: 100%;
+    border: 1px solid $primary-btn-background-color;
+}
+
+.reminderText{
+    color: $disabled-text-color;
+    font-size: 1.125rem;
+    text-align: center;
+    margin-top: 50%;
+}

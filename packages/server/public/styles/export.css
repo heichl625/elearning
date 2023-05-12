@@ -1,0 +1,81 @@
+.export-container{
+    padding: 5% 10%;
+    width: 100%;
+}
+
+.export-table{
+    width: 100%;
+}
+.lesson-table{
+    width: 100%;
+}
+table, th, td{
+    height: 30px;
+}
+.delete-btn{
+    margin: 5px;
+}
+.input-item{
+    margin: 20px 0;
+}
+.input-group-img{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+.required{
+    color: red;
+}
+.title-input{
+    width: 500px !important;
+    height: 25px;
+    font-size: 18px;
+}
+
+.course-input{
+    width: 500px !important
+}
+
+.description-input{
+    display: none;
+}
+.url-input{
+    width: 500px !important;
+    height: 25px;
+    font-size: 18px;
+}
+.material-list{
+    background: white;
+    border: 1px solid rgba(0,0,0, 0.2);
+    display: none;
+    padding: 10px;
+    margin: 10px;
+}
+.material-list div{
+    display: flex;
+    align-items: center;
+}
+.material-list div p{
+    margin-right: 10px;
+}
+.material-list div a{
+    margin-right: 10px;
+}
+.material-input{
+    display: block;
+}
+.materials{
+    display: none;
+}
+.order-input{
+    width: 80px !important;
+}
+
+.pagination{
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.page-limit{
+    justify-content: flex-start;
+}

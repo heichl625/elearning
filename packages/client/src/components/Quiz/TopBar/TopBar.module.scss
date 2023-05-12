@@ -1,0 +1,101 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/responsive.scss';
+@import '../../../styles/skeleton.scss';
+
+.container{
+    padding: 2em 10em;
+    background: linear-gradient(180deg, #887777 0%, #225074 100%);
+
+    @include lg{
+        padding: 1.5em;
+    }
+}
+
+.sectionName{
+    color: $primary-text-color;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.875rem;
+
+    @include lg{
+        font-size: 1rem;
+        line-height: normal;
+    }
+}
+
+.courseTitle{
+    color: $light-text-color;
+    font-size: 2.5rem;
+    line-height: 3rem;
+    font-weight: 600;
+
+    @include lg{
+        font-size: 1.5rem;
+        line-height: normal;
+    }
+}
+
+.titleSkeleton{
+    width: 30rem;
+    height: 3rem;
+    background-color: $skeleton-color;
+    overflow: hidden;
+    position: relative;
+
+    @include lg{
+        height: 1.5rem;
+    }
+}
+
+.titleSkeleton::before{
+    @include skeleton;
+}
+
+.descriptionContainer{
+    display: flex;
+
+    @include lg{
+        flex-direction: column;
+    }
+}
+
+.skeletonContainer{
+    .skeleton:first-of-type{
+        width: 15rem;
+    }
+    .skeleton:nth-of-type(2){
+        width: 10rem;
+    }
+    .skeleton:last-of-type{
+        width: 13rem;
+    }
+}
+
+.skeleton{
+    height: 1.5rem;
+    margin: 1em 0;
+    background-color: $skeleton-color;
+    overflow: hidden;
+    position: relative;
+
+    @include lg{
+        margin: 0.5em 0;
+    }
+}
+
+.skeleton::before{
+    @include skeleton;
+}
+
+.description{
+    color: $light-text-color;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    margin-right: 3.75rem;
+
+    @include lg{
+        font-size: 1rem;
+        line-height: normal;
+        margin: 0.5em 0;
+    }
+}

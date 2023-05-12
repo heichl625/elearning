@@ -1,0 +1,322 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/button.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    padding-bottom: 4rem;
+    border-bottom: 1px solid $disabled-color;
+    
+
+    @include lg{
+        display: none;
+        padding: 1.5em 5%;
+        background-color: $primary-background-color;
+        border-bottom: 0;
+        margin-bottom: 0.5em;
+    }
+}
+
+.mobileContainer{
+    @include lg{
+        display: block;
+    }
+}
+
+.title{
+    color: $secondary-text-color;
+    font-size: 1.875rem;
+    line-height: 2.625rem;
+    margin-top: 0;
+}
+
+table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1.5rem;
+}
+
+thead, tbody, tr, th{
+    @include lg{
+        display: block;
+    }
+}
+
+th{
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+
+.itemContainer td{
+    vertical-align: top;
+    padding-top: 2.5rem;
+    border-top: 2px solid $border-color;
+    border-bottom: 2px solid $border-color;
+
+    @include lg{
+        border: none;
+        padding-top: 1.5em;
+    }
+}
+
+.itemContainer td:first-of-type{
+    border-left: 2px solid $border-color;
+
+    @include lg{
+        border: none;
+    }
+}
+
+.itemContainer td:last-of-type{
+    border-right: 2px solid $border-color;
+
+    @include lg{
+        border: none;
+    }
+}
+
+.colHeading{
+    font-weight: 600;
+    text-align: center;
+
+    @include lg{
+        display: none;
+    }
+}
+
+.itemContainer{
+    border: 2px solid $border-color;
+
+    @include lg{
+        margin-bottom: 1em;
+    }
+}
+
+
+.centerCol{
+    text-align: center;
+    color: $secondary-text-color;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 2rem;
+
+    @include lg{
+        display: none;
+    }
+}
+
+.courseInfo{
+    padding: 1.5rem 2.5rem;  
+
+    @include lg{
+        display: block;
+        padding: 1.5em;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+}
+
+.extraCourseInfo{
+    display: none;
+    margin-top: 1em;
+
+    p{
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+        margin: 0
+    }
+
+    @include lg{
+        display: block;
+    }
+}
+
+.courseTop{
+    display: flex;
+}
+
+.courseCover{
+    width: 8.5rem;
+    height: 5.75rem;
+    object-fit: cover;
+}
+
+.courseBasicInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0.75rem;
+}
+
+.courseName{
+    color: $secondary-text-color;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    margin: 0 0 0.5rem;
+}
+
+.instructor{
+    color: $secondary-text-color;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin: 0;
+}
+
+.bottom{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3.625rem;
+
+    @include lg{
+        width: 100%;
+        margin-top: 1.25em;
+        flex-direction: column;
+    }
+}
+
+.sectionTitle{
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+}
+
+.couponContainer{
+    width: 48%;
+
+    @include lg{
+        width: 100%;
+    }
+}
+
+.couponForm{
+    display: flex;
+
+    @include lg{
+        justify-content: space-between;
+        width: 100%;
+    }
+
+}
+
+.inputField{
+    border: 1.5px solid $border-color;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    outline: none;
+    line-height: 2.25rem;
+    padding: 0.5rem 1.875rem;
+    width: 70%;
+
+    @include lg{
+        width: 70%;
+        height: 3.5rem;
+        padding: 0.875em;
+        line-height: 2.25rem;
+        box-sizing: border-box;
+    }
+}
+
+.inputField::placeholder{
+    color: #272E3D;
+    opacity: 0.2;
+}
+
+.submitBtn{
+    @include globalButton;
+    padding: 0.875rem 0;
+    width: 28%;
+    color: $primary-btn-text-color;
+    background-color: $highlight-background-color;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    margin-left: 2.125rem;
+    outline: none;
+    border: none;
+
+    @include lg{
+        width: 28%;
+        padding: 0.875em 0;
+        margin: 0;
+        box-sizing: border-box;
+        line-height: normal;
+        font-size: 1.125rem;
+    }
+}
+
+.priceContainer{
+    flex-basis: 40%;
+    display: flex;
+    justify-content: center;
+
+    table{
+        width: 100%;
+        max-width: 28rem;
+
+        tr{
+            @include lg{
+                display: flex;
+                justify-content: space-between;
+            };
+
+            td:last-of-type{
+                text-align: right;
+            }
+        }
+
+        td{
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 2rem;
+            width: 50%;
+            text-align: left;
+
+            @include lg{
+                display: block;
+                padding-top: 0.5em;
+                font-size: 1rem;
+                line-height: 1.5rem;
+            }
+        }
+    }
+}
+.total{
+    color: $primary-text-color
+}
+
+.usedCode{
+    font-size: 0.75rem;
+    color: $disabled-color;
+    line-height: 1.25rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+}
+
+.continueBtnContainer{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.continueBtn{
+    @include globalButton;
+    border: none;
+    outline: none;
+    color: $primary-btn-text-color;
+    background-color: $primary-btn-background-color;
+    padding: 0.875rem 8.25rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+}
+
+.error{
+    font-size: 0.875rem;
+    color: $error-text-color;
+}

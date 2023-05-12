@@ -1,0 +1,324 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/button.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    position: absolute;
+    top: 4.75rem;
+    right: 0;
+    max-height: 90vh;
+    margin-right: -1.875rem;
+    cursor: default;
+    
+
+    @include lg{
+        top: 4.5rem;
+        z-index: 7;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.3);
+        margin-right: 0;
+    }
+    
+}
+
+.pointer{
+    width: 3rem;
+    height: 3rem;
+    position: relative;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: 1rem;
+
+    @include lg{
+        display: none;
+    }
+}
+
+.pointer::after{
+    content: "";
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    top: 2rem;
+    left: 0.5rem;
+    background-color: $primary-background-color;
+    transform: rotate(45deg); /* Prefixes... */
+    box-shadow: -1px -1px 10px -2px rgba(0, 0, 0, 0.2);
+
+    @include lg{
+        display: none;
+    }
+}
+
+.cartContainer{
+    width: 29.5rem;
+    display: flex;
+    flex-direction: column;
+    background-color: $primary-background-color;
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    max-height: calc(80vh - 3rem);
+    overflow-y: auto;
+
+    @include lg {
+        padding: 2em 5% 5em;
+        width: 100%;
+        box-sizing: border-box;
+        height: 100%;
+    }
+}
+
+.cartTotalNumber{
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin-top: 0;
+}
+
+.cartItem{
+    display: flex;
+    width: 100%;
+    margin-bottom: 2rem;
+
+    @include lg{
+        justify-content: space-between;
+    }
+}
+
+.noItemText{
+    font-size: 1.25rem;
+}
+
+.courseCover{
+    width: 10.5rem;
+    height: 7rem;
+    object-fit: cover;
+
+    @include lg{
+        width: 30%;
+        height: 4rem;
+        object-fit: contain;
+    }
+}
+
+.courseInfo{
+    flex-grow: 1;
+    margin-left: 1rem;
+
+    @include lg{
+        flex-basis: 60%;
+        flex-grow: 0;
+        margin-left: 0;
+    }
+}
+
+.courseInfoTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.courseTitle{
+    color: $secondary-text-color;
+    font-size: 0.875rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.removeBtn{
+    cursor: pointer;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: $dark-blue-text-color;
+    margin: 0;
+}
+
+.instructorContainer{
+    display: flex;
+    align-items: center;
+}
+
+.avator{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.instructor{
+    color: $secondary-text-color;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin: 0 0.25rem;
+
+    @include sm{
+        font-size: 0.75rem;
+    }
+
+}
+
+.suggestionContainer{
+    border: 2px solid $border-color;
+    border-radius: 0.25rem;
+    padding: 1rem;
+}
+
+.sectionTitle{
+    font-size: 0.875rem;
+    color: $dark-blue-text-color;
+    line-height: 1.25rem;
+}
+
+.suggestionCourse{
+    width: 100%;
+    display: flex;
+    margin: 1em 0;
+    justify-content: space-between;
+}
+
+.suggestCourseCover{
+    width: 9rem;
+    height: 6rem;
+    object-fit: cover;
+    margin-right: 1.5rem;
+
+    @include lg{
+        width: 30%;
+        height: 4rem;
+        margin-right: 0;
+        object-fit: contain;
+    }
+}
+
+.suggestCourseInfo{
+    flex-grow: 1;
+
+    @include lg{
+        flex-grow: 0;
+        width: 60%;
+    }
+}
+
+.suggestCourseBottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.suggestToCartContainer{
+    width: 2rem;
+    height: 2rem;
+    background-color: $primary-background-color;
+    border-radius: 100%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.25rem;
+    padding: 2px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    @include md{
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+.suggestAddCartBtn{
+    width: 100%;
+    height: 100%;
+}
+
+.suggestCoursePriceContainer{
+    text-align: right;
+}
+
+.price{
+    font-size: 0.875rem;
+    color: $secondary-text-color;
+    line-height: 1.25rem;
+    margin: 0;
+    position: relative;
+}
+
+.crossout{
+    position: absolute;
+    width: 110%;
+    background-color: $secondary-text-color;
+    height: 2px;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    margin-left: -5%;
+}
+
+.discount{
+    color: $primary-text-color;
+}
+
+.btnContainer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.addAllBtn{
+    @include globalButton;
+    background-color: $dark-blue-btn-background;
+    color: $primary-btn-text-color;
+    width: 11.375rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.125rem;
+    outline: none;
+    border: none;
+
+    @include lg{
+        width: 100%;
+    }
+}
+
+.cartBtn{
+    @include globalButton;
+    background-color: $dark-blue-btn-background;
+    color: $primary-btn-text-color;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.125rem;
+    outline: none;
+    border: none;
+    width: 9.5rem;
+    margin-right: 1rem;
+}
+
+.checkoutBtn{
+    @include globalButton;
+    background-color: $highlight-background-color;
+    color: $primary-btn-text-color;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.125rem;
+    outline: none;
+    border: none;
+    width: 9.5rem;
+}
+
+.tagContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag{
+    font-size: 0.8125rem;
+    line-height: 1.125rem;
+    color: $dark-blue-text-color;
+    padding: 0.25rem 0.875rem;
+    border: 1px solid $dark-blue-text-color;
+    border-radius: 1rem;
+    margin-right: 0.5rem;
+}

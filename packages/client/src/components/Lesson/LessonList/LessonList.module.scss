@@ -1,0 +1,231 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/button.scss';
+@import '../../../styles/responsive.scss';
+@import '../../../styles/skeleton.scss';
+
+.container{
+    width: 25%;
+    min-width: 20rem;
+    height: 100%;
+    min-height: calc(100vh - 9rem);
+    background-color: #F5F5F5;
+    
+
+    @include lg{
+        width: 100%;
+        display: none;
+    }
+
+    button{
+        @include globalButton;
+        font-size: 1.25rem;
+        font-weight: 600;
+        line-height: 1.5rem;
+        outline: none;
+        border: none;
+    }
+}
+
+@keyframes slidein {
+    from{
+        height: 0;
+        opacity: 0;
+    }
+    to{
+        height: 100%;
+        opacity: 1;
+    }
+}
+
+.showList{
+    display: block;
+    animation: slidein 0.5s ease-in-out 0 none;
+}
+
+.top{
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 2.75rem;
+    box-sizing: border-box;
+
+    @include lg{
+        padding: 0 1.5em;
+    }
+}
+
+.backBtn{
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    @include lg{
+        display: none;
+    }
+
+    .arrow{
+        height: 2rem;
+        width: 2rem;
+        object-fit: cover;
+        margin-right: 1rem;
+    }
+
+    p{
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        color: $secondary-text-color;
+        margin: 0;
+    }
+}
+
+.enrolledGroup{
+    display: flex;
+    flex-direction: column;
+    margin: 2.375rem 0;
+}
+
+.progressBarContainer{
+    margin-bottom: 1.25rem
+}
+
+.progressBar{
+    width: 95%;
+    height: 0.5rem;
+    background-color: rgba(21, 191, 147, 0.2);
+    border-radius: 0.25rem;
+}
+
+.currentProgress{
+    height: 100%;
+    border-radius: 0.25rem;
+    background-color: #15BF93;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.currentProgressIndicator{
+    height: 1.5rem;
+    width: 1.5rem;
+    position: absolute;
+    border-radius: 100%;
+    background-color: #15BF93;
+    top: 0;
+    right: 0;
+    margin-top: -0.5rem;
+    margin-right: -0.5rem;
+}
+
+.progressPercent{
+    margin: 1rem 0 0;
+    text-align: right;
+    color: #15BF93;
+    font-size: 0.875rem;
+    line-height: 1rem;
+}
+
+
+
+.quizBtn{
+    background-color: $highlight-background-color;
+    color: $primary-btn-text-color;
+    padding: 0.875rem 0;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.qnaBtn{
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+    padding: 0.875rem 0;
+    width: 100%;
+}
+
+// .lessonsContainer{
+    
+// }
+
+.lessonBlock{
+    border-top: 2px solid $border-color;
+    padding: 1.75rem 2.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skeleton{
+    border-top: 2px solid $border-color;
+    padding: 1.75rem 2.5rem;
+}
+
+.activeBlock{
+    background-color: rgba(43, 186, 238, 0.15);
+}
+
+.disabledBlock{
+    cursor: default;
+    p{
+        color: $disabled-text-color;
+    }
+}
+
+.lessonTitle{
+    margin: 0 0 0.5rem;
+    font-size: 1.125rem;
+    color: $secondary-text-color;
+    line-height: 1.375rem;
+}
+
+.titleSkeleton{
+    margin-bottom: 0.5rem;
+    background-color: $skeleton-color;
+    height: 1.375rem;
+    width: 70%;
+    overflow: hidden;
+    position: relative;
+}
+.titleSkeleton::before{
+    @include skeleton;
+}
+
+.finishedText{
+    display: flex;
+    align-items: center;
+    color: #15BF93;
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1rem;
+}
+
+.statusSkeleton{
+    height: 1rem;
+    width: 30%;
+    background-color: $skeleton-color;
+    overflow: hidden;
+    position: relative;
+}
+
+.statusSkeleton::before{
+    @include skeleton;
+}
+
+.tick{
+    width: 1rem;
+    height: 1rem;
+    object-fit: cover;
+    margin-left: 0.5rem;
+}
+
+.unfinishedText{
+    margin: 0;
+    font-size: 0.875rem;
+    color: $disabled-text-color;
+    line-height: 1rem;
+}
+
+.attachmentIcon{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+
+

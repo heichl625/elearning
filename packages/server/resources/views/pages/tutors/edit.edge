@@ -1,0 +1,119 @@
+@layout('layout/main')
+
+@section('content')
+@!component('components/submenu', {
+page: '導師',
+items: [{
+link: '/cms/tutors/add',
+title: '加入新導師'
+}]
+})
+{{style('styles/tutors')}}
+<div class="inner-container">
+    @!component('components/breadcrumb', {
+        items:[
+        {
+            link: '/cms',
+            page: '主頁'
+        },{
+            link: '/cms/tutors',
+            page: '導師'
+        }
+        ],
+        currentPage: '修改導師資料 ('+tutor.name +')'
+    })
+
+    <h2 class="page-title">修改導師資料</h2>
+    @if(old('notification'))
+    <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+    <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    <form action="/cms/tutors/edit/{{tutor.id}}" method="POST" enctype="multipart/form-data" onsubmit="submitForm()">
+        <div class="input-item row">
+            <label clas="col-form-label col-sm-2"><span class="required">*</span>導師名稱：</label>
+            <div class="col-sm-10">
+                <input placeholder='請輸入導師名稱...' name="name" class="name-input form-control form-control-sm" required
+                    value="{{tutor.name}}" />
+            </div>
+        </div>
+        <div class="input-item row">
+            <label clas="col-form-label col-sm-2"><span class="required">*</span>導師電郵：</label>
+            <div class="col-sm-10">
+                <input type="email" name="email" class="email-input form-control form-control-sm" placeholder="請輸入電郵地址"
+                    required value="{{tutor.email}}" />
+            </div>
+        </div>
+        <div class="input-item row">
+            <label clas="col-form-label col-sm-2"><span class="required">*</span>所屬組織：</label>
+            <div class="col-sm-10">
+                <select name="course_developer_id" class="course-developer-input form-select form-control-sm"
+                    value="{{tutor.course_developer_id}}">
+                    @each(course_developer in course_developers)
+                    <option value="{{course_developer.id}}" class="organization-input">{{course_developer.display_name}}</option>
+                    @endeach
+                </select>
+            </div>
+            <script organization="{{tutor.course_developer_id}}">
+                const id = document.currentScript.getAttribute('organization')
+                const optionsRef = document.querySelectorAll('.organization-input');
+                for (let i = 0; i < optionsRef.length; i++) {
+                    if (optionsRef[i].value === id) {
+                        optionsRef[i].setAttribute('selected', 'selected');
+                    }
+                }
+            </script>
+        </div>
+        <div class="input-item-img row">
+            <label clas="col-form-label col-sm-12"><span class="required">*</span>導師頭像上載：</label>
+            <img src="{{tutor.avator}}" class="uploaded-img" />
+            <div class="col-sm-12">
+                <input type="file" name="avator" class='image-input form-control form-control-sm'
+                    accept=".png,.svg,.jpg,.jpeg" onchange="changeAvator(event)" />
+            </div>
+        </div>
+        <div class="input-item row">
+            <label clas="col-form-label col-sm-12"><span class="required">*</span>導師簡介：</label>
+            <div class="col-sm-12">
+                <div id="editor">
+                    <p>請在此輸入導師簡介⋯⋯</p>
+                </div>
+            </div>
+            <input class="description-input form-control form-control-sm" name='description' />
+            <script description="{{tutor.description}}">
+                const description = document.currentScript.getAttribute('description');
+                const descriptionRef = document.querySelector('#editor');
+                descriptionRef.innerHTML = description;
+            </script>
+        </div>
+        <div class="input-item">
+            <div class="required-label"><span class="required">*</span>為必填項目</div>
+        </div>
+
+        <button class="btn btn-primary">修改導師資料</button>
+    </form>
+    <script>
+
+        function changeAvator(event) {
+            var tgt = event.target || window.event.srcElement,
+                files = tgt.files;
+
+            // FileReader support
+            if (FileReader && files && files.length) {
+                var fr = new FileReader();
+                fr.onload = function () {
+                    document.querySelector('.uploaded-img').src = fr.result;
+                }
+                fr.readAsDataURL(files[0]);
+            }
+        }
+        function submitForm(event) {
+
+            document.querySelector('.description-input').value = document.querySelector('.ql-editor').innerHTML
+        }
+
+    </script>
+
+</div>
+@endsection

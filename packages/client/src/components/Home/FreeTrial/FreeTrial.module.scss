@@ -1,0 +1,442 @@
+@import '../../../styles/color.scss'; 
+@import '../../../styles/responsive.scss';
+@import '../../../styles/skeleton.scss';
+
+.container{
+    height: 35rem;
+    width: 100%;
+    display: flex;
+    position: relative;
+    margin-top: 5.5em;
+    justify-content: space-around;
+    box-sizing: border-box;
+    background-image: url('../../../images/Background/banner_2@3x.png');
+    background-size: 50% auto;
+    background-repeat: no-repeat;
+    background-position: right top;
+
+    @media screen and (max-width: 1300px) {
+        background-size: 60% 100%;
+        background-repeat: no-repeat;
+        background-position: right center;   
+    }
+
+    @include lg{
+        margin-top: 0;
+        height: auto;
+        background-size: 100% 75%;
+        background-repeat: no-repeat;
+        background-position: right bottom;
+    }
+}
+
+.hide{
+    display: none;
+}
+
+.background{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    max-width: 65.625rem;
+    height: 100%;
+    object-fit: cover;
+    object-position: left top;
+
+    @include lg{
+        padding-top: 6em;
+        // box-sizing: border-box;
+        object-fit: fill;
+        object-position: right top;
+        
+    }
+}
+
+.videoSectionContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-basis: 40%;
+    z-index: 2;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    margin: 1em 0;
+
+    @include lg{
+        display: none;
+    }
+
+    
+}
+
+.videoContainer{
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+    position: relative;
+    margin-top: 5em;
+
+    iframe{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.videoSkeleton{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $skeleton-color;
+    overflow: hidden;
+}
+
+.videoSkeleton::before{
+    @include skeleton;
+}
+
+.video{
+    cursor: pointer;
+}
+
+.videoOverlay{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+.videoPlayBtn{
+    width: 7rem;
+    height: 7rem;
+}
+
+.selectedCourseTitle{
+    color: $secondary-text-color;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.line{
+    height: 0.375rem;
+    width: 5rem;
+    margin-right: 1.25rem;
+    background-color: $primary-btn-background-color;
+}
+
+.videoSelector{
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    margin-top: 2.5em;
+    flex-shrink: 0;
+
+    @include lg{
+        margin-top: 2em;
+        position: relative;
+        width: 100%;
+    }
+}
+
+.swiper{
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-top: 1.5em;
+    display:none;
+    position: relative;
+
+    @include lg{
+        display: block;
+    };
+    
+}
+
+.mobileVideoContainer{
+    max-width: 784px;
+    height: 100%;
+    display: flex;
+
+    iframe{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.mobileVideoSkeleton{
+    display: none;
+    justify-content: space-between;
+    height: 39.375vw;
+    margin-top: 1em;
+
+    @include lg{
+        display: flex;
+    }
+}
+
+.mobileLeftVideoSkeleton, .mobileRightVideoSkeleton{
+    width: 10%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: $skeleton-color;
+}
+
+.mobileLeftVideoSkeleton::before, .mobileRightVideoSkeleton::before{
+    @include skeleton;
+}
+
+.mobileCenterVideoSkeleton{
+    width: 70%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: $skeleton-color;
+}
+
+.mobileCenterVideoSkeleton::before{
+    @include skeleton;
+}
+
+.mobileThumbnails{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mobileVideoTitle{
+    display: none;
+    margin-left: 18%;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    color: $secondary-text-color;
+    font-weight: 600;
+    margin-top: 1.5em;
+
+    @include lg{
+        display: block;
+    }
+}
+
+.leftArrow{
+    width: 2.375rem;
+    height: 4rem;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 10%;
+    top: 50%;
+    margin-top: -2em;
+    background-color: #ffffff;
+    z-index: 2;
+    cursor: pointer;
+
+    img{
+        width: 2rem;
+        height: 2rem;
+        object-fit: cover;
+    }
+}
+
+.rightArrow{
+    width: 2.375rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: #ffffff;
+    right: 10%;
+    top: 50%;
+    z-index: 2;
+    margin-top: -2em;
+    cursor: pointer;
+
+    img{
+        width: 2rem;
+        height: 2rem;
+        object-fit: cover;
+    }
+}
+
+.sectionTitleContainer{
+    display: flex;
+    flex-direction: column;
+
+    @include lg {
+        align-items: center;
+    }
+}
+
+.sectionTitle{
+    color: $secondary-text-color;
+    font-size: 2.5rem;
+    margin: 0;
+    margin-bottom: 0.5em;
+
+    @include lg {
+        font-size: 1.5rem;
+        margin-bottom: 0.75em;
+    }
+}
+
+.divider{
+    width: 6.25rem;
+    height: 0.5rem;
+    background-color: $primary-btn-background-color;
+
+    @include lg{
+        height: 5px;
+        width: 3.125rem;
+    }
+}
+
+.coursesContainer{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-top: 1.5rem;
+
+    @include lg{
+        display: none;
+    }
+}
+
+.courseCard{
+    width: 32rem;
+    height: 10rem;
+    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.1);
+    background-color: $primary-background-color;
+    display: flex;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+}
+
+.courseImg{
+    width: 13.5rem;
+    height: 9rem;
+    object-fit: cover;
+    margin-right: 1.5rem
+}
+
+.courseImgSkeleton{
+    width: 13.5rem;
+    height: 9rem;
+    margin-right: 1.5em;
+    background-color: $skeleton-color;
+    overflow: hidden;
+    position: relative;
+}
+
+.courseImgSkeleton::before{
+    @include skeleton;
+}
+
+
+.courseInfo{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    box-sizing: border-box;
+    justify-content: space-around;
+    padding-right: 2rem;
+}
+
+.courseTitle{
+    margin-top: 1.5rem;
+    color: $secondary-text-color;
+    font-size: 1.375rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0 0;
+}
+
+.courseTitleSkeleton{
+    width: 80%;
+    height: 3em;
+    background-color: $skeleton-color;
+    overflow: hidden;
+    position: relative;
+    margin: 0.5rem 0 0 0;
+}
+
+.courseTitleSkeleton::before{
+    @include skeleton;
+}
+
+.courseCardBottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.courseCardBottomSkeleton{
+    width: 100%;
+    height: 2rem;
+    background-color: $skeleton-color;
+    overflow: hidden;
+    position: relative;
+}
+
+.courseCardBottomSkeleton::before{
+    @include skeleton;
+}
+
+
+.instructorContainer{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.instructorAvator{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+    margin-right: 0.625rem;
+    object-fit: cover;
+}
+
+.instructorName{
+    color: $secondary-text-color;
+    font-size: 1rem;
+    line-height: 1.3125rem;
+}
+
+.playButtonGroup{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.playLabel{
+    color: $secondary-text-color;
+    font-size: 1rem;
+    line-height: 1.3125rem;
+    margin-right: 0.375rem
+}
+
+.playBtn{
+    width: 1.375rem;
+    height: 1.375rem;
+}

@@ -1,0 +1,461 @@
+@import '../../styles/color.scss';
+@import '../../styles/button.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    width: 100%;
+    padding: 5.625rem 10%;
+    box-sizing: border-box;
+    @include lg{
+        padding: 1.5em 5% 7em;
+    }
+}
+
+.title{
+    color: $secondary-text-color;
+    font-size: 1.875rem;
+    line-height: 2.625rem;
+    margin-top: 0;
+}
+
+.radioBtn{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 100%;
+    border: 1px solid $border-color;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectedRadio{
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 100%;
+    background-color: $primary-btn-background-color;
+}
+
+table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1.5rem;
+
+    @include lg{
+        display: block;
+    }
+}
+
+thead{
+    @include lg{
+        display: block;
+    }
+}
+
+tbody{
+    @include lg{
+        display: block;
+    }
+}
+
+.itemContainer{
+    @include lg{
+        display: block;
+    }
+}
+
+.itemContainer td{
+    border-top: 2px solid $border-color;
+    border-bottom: 2px solid $border-color;
+
+    @include lg{
+        display: none;
+    }
+}
+
+.itemContainer td:first-of-type{
+    border-left: 2px solid $border-color;
+}
+
+.itemContainer td:last-of-type{
+    border-right: 2px solid $border-color
+}
+
+.mobileItemContainer{
+    display: none;
+    border: 1px solid $border-color;
+    margin-top: 1.5em;
+    padding-top: 0;
+    @include lg{
+        display: block !important;
+    }
+}
+
+.topRow{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5%;
+    margin-top: 1.5em;
+}
+
+.mobileCourseInfo{
+
+    @include lg{
+        margin-top: 1.25em;
+        padding: 0 5%;
+    };
+
+    .extraCourseInfo{
+        @include lg {
+            font-size: 0.875rem;
+            line-height: 1.5rem;
+        }
+    }
+}
+
+.mobilePriceContainer{
+    background-color: $border-color;
+}
+
+.mobilePriceRow{
+    display: flex;
+    padding: 0 5%;
+    justify-content: space-between;
+    align-items: center;
+
+    p{
+        margin: 0.5em 0;
+        font-size: 0.75rem;
+        line-height: 1rem;
+    }
+}
+
+.mobilePriceRow:first-of-type{
+    padding-top: 1.5em;
+}
+
+.mobilePriceRow:last-of-type{
+    padding-bottom: 1.5em;
+}
+
+.headingRow{
+    @include lg{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+th{
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+.headingRadio{
+    display: flex;
+    align-items: center;
+
+    .radioBtn{
+        margin-right: .5rem
+    }
+}
+
+
+td{
+    vertical-align: top;
+    padding-top: 3.5rem;
+}
+
+.colHeading{
+    font-weight: 600;
+    text-align: center;
+
+    @include lg{
+        display: none;
+    }
+}
+
+.ratioChoice{
+    width: 9rem;
+    border-left: 2px solid $border-color;
+
+    div{
+        margin: 0 auto;
+    }
+}
+
+
+.centerCol{
+    text-align: center;
+    color: $secondary-text-color;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    @include lg{
+        display: none;
+    }
+}
+
+.courseInfo{
+    padding-top: 1.5rem;
+    width: 30%;
+}
+
+.courseTop{
+    display: flex;
+}
+
+.courseCover{
+    width: 8.5rem;
+    height: 5.75rem;
+    object-fit: cover;
+}
+
+.courseBasicInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0.75rem;
+}
+
+.courseName{
+    color: $secondary-text-color;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    margin: 0 0 0.5rem;
+}
+
+.instructor{
+    color: $secondary-text-color;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin: 0;
+}
+
+.extraCourseInfo{
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 1rem;
+    padding: 2rem 0;
+
+    p{
+        margin: 0;
+    }
+
+    p:last-of-type{
+        margin-top: 1rem;
+    }
+}
+
+.removeBtn{
+    color: $primary-text-color;
+    cursor: pointer;
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    @include lg{
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+}
+
+.bottom{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3.625rem;
+
+    @include lg{
+        width: 100%;
+        margin-top: 1.25em;
+    }
+}
+
+.couponContainer{
+    width: 48%;
+
+    @include lg{
+        width: 100%;
+    }
+}
+
+.sectionTitle{
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+}
+
+.couponForm{
+    display: flex;
+
+    @include lg{
+        justify-content: space-between;
+        width: 100%;
+    }
+
+}
+
+.inputField{
+    border: 1.5px solid $border-color;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    outline: none;
+    line-height: 2.25rem;
+    padding: 0.5rem 1.875rem;
+    width: 70%;
+
+    @include lg{
+        width: 70%;
+        height: 3.5rem;
+        padding: 0.875em;
+        line-height: 2.25rem;
+        box-sizing: border-box;
+    }
+}
+
+.inputField::placeholder{
+    color: #272E3D;
+    opacity: 0.2;
+}
+
+.submitBtn{
+    @include globalButton;
+    padding: 0.875rem 0;
+    width: 28%;
+    color: $primary-btn-text-color;
+    background-color: $highlight-background-color;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.75rem;
+    margin-left: 2.125rem;
+    outline: none;
+    border: none;
+
+    @include lg{
+        width: 28%;
+        padding: 0.875em 0;
+        margin: 0;
+        box-sizing: border-box;
+        line-height: normal;
+        font-size: 1.125rem;
+    }
+}
+
+.priceContainer{
+    flex-basis: 48%;
+    display: flex;
+    justify-content: center;
+
+    table{
+        width: 28rem;
+
+        td{
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 2rem;
+            width: 50%;
+            text-align: right;
+        }
+    }
+
+    @include lg{
+        display: none;
+    }
+}
+.total{
+    color: $primary-text-color
+}
+
+.usedCode{
+    font-size: 0.75rem;
+    color: $disabled-color;
+    line-height: 1.25rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+}
+
+.continueBtnContainer{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: flex-end;
+
+    @include lg{
+        display: none;
+    }
+}
+
+.continueBtn{
+    @include globalButton;
+    border: none;
+    outline: none;
+    color: $primary-btn-text-color;
+    background-color: $primary-btn-background-color;
+    padding: 0.875rem 8.25rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+
+    @include lg{
+        width: 100%;
+        padding: 0.875em 0;
+    }
+}
+
+.error{
+    font-size: 0.875rem;
+    color: $error-text-color;
+}
+
+.mobileFooter{
+    display: none;
+    position: fixed;
+    background-color: $primary-background-color;
+    box-shadow: 0 -2px 4px 0 rgba(0,0,0,0.15);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index:2;
+    padding: 1em 1.5em;
+    box-sizing: border-box;
+
+    @include lg{
+        display: block
+    }
+}
+
+.footerPriceRow{
+    display: flex;
+    margin-bottom: 0.5em;
+}
+
+.mobilePriceText{
+    color: $secondary-text-color;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    margin: 0 3.625rem 0 0;
+}
+
+.mobilePriceTotal{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.mobilePriceTotalText{
+    color: $primary-text-color;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.hidden{
+    display: none;
+}

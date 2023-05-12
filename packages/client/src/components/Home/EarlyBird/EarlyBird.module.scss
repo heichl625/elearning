@@ -1,0 +1,63 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    width: 100%;
+    padding: 3% 5%;
+    box-sizing: border-box;
+    
+    @include lg{
+        padding: 2.5em 0;
+    }
+}
+
+.hide {
+    display: none;
+}
+
+.topContainer{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .more{
+        display: flex;
+        position: absolute;
+        align-items: center;
+        color: $secondary-text-color;
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        right: 0;
+
+        @include lg {
+            display: none;
+        }
+    }
+}
+
+.title{
+    margin-left: auto;
+}
+
+.mobileMore{
+    display: none;
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    right: 0;
+    margin-top: 1.5rem;
+    @include lg{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+    }
+}
+
+.rightArrow{
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.25rem;
+}

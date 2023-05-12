@@ -1,0 +1,41 @@
+@layout('layout/main')
+
+@section('content')
+{{style('styles/category')}}
+<div class="full-page-container">
+    @!component('components/breadcrumb', {
+        items:[
+        {
+            link: '/cms',
+            page: '主頁'
+        },
+        {
+            link: '/cms/category',
+            page: '課程類別'
+        }
+        ],
+        currentPage: '建立課程類別'
+    })
+
+    <h2 class="page-title">建立課程類別</h2>
+    @if(old('notification'))
+    <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+    <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    <form action="/cms/category/add" method="POST" enctype="multipart/form-data">
+        <div class="input-item row">
+            <label class="col-form-label col-sm-4">類別名稱：</label>
+            <div class="col-sm-8">
+                <input placeholder='請輸入類別名稱...' name="name" class="title-input form-control form-control-sm"
+                    required />
+            </div>
+        </div>
+
+        <button class="submit-btn btn btn-primary">建立課程類別</button>
+
+    </form>
+
+</div>
+@endsection

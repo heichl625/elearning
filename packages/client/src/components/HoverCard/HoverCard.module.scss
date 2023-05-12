@@ -1,0 +1,126 @@
+@import '../../styles/color.scss';
+@import '../../styles/button.scss';
+@import '../../styles/responsive.scss';
+
+.hoverCard{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(34, 80, 116, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    -webkit-animation: fade-in 0.2s ease-in-out;
+    animation: fade-in 0.2s ease-in-out;
+
+    @include lg{
+        display: none;
+    }
+}
+
+@keyframes fade-in{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.hoverContainer{
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.favouriteBtn{
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-background-color;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+    margin-top: 1rem;
+    cursor: pointer;
+
+    @include lg{
+        margin: 0;
+    }
+
+}
+
+.favouriteIcon{
+    width: 95%;
+    height: 95%;
+}
+
+.hoverInfoContainer{
+    flex-grow: 1;
+}
+
+.hoverTitle{
+    font-size: 1.125rem;
+    line-height: 1rem;
+    color: $light-text-color;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+
+    @include md{
+        font-size: 1rem;
+        line-height: normal;
+        font-weight: 500;
+        margin-bottom: 1rem;
+        margin-top: 0;
+    }
+
+}
+
+.hoverDesc{
+    font-size: 1rem;
+    line-height: 1.25rem;
+    color: $light-text-color;
+    margin: 3% 0;
+
+    @include md{
+        margin: 0;
+    }
+}
+
+.hoverBtnContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    
+    justify-content: flex-end;
+}
+
+.btn{
+    @include globalButton;
+    width: 100%;
+    padding: 0.875rem 0;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    border: none;
+    outline:none;
+    margin-bottom: 0.5rem;
+    color: $light-text-color;
+}
+
+.hoverAddToCartBtn{
+    background: none;
+    border: 2px solid $light-text-color;
+}
+
+.hoverPurchaseBtn{
+    background-color: $highlight-background-color;
+}
+
+.purchasedText{
+    text-align: center;
+    color: $light-text-color;
+}

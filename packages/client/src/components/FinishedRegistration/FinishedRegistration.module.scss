@@ -1,0 +1,44 @@
+@import '../../styles/button.scss';
+@import '../../styles/color.scss'; 
+@import '../../styles/responsive.scss';
+
+.container{
+    width: 43.75rem;
+    padding: 5rem 5.875rem;
+    box-sizing: border-box;
+
+    @include lg{
+        width: 90vw;
+        max-width: 43.75rem;
+    }
+
+    @include md{
+        padding: 3rem 1.5rem;
+        box-sizing: border-box;
+        overflow-y: scroll;
+        scrollbar-width: none;
+    }
+
+}
+
+.container::-webkit-scrollbar{
+    display:none;
+}
+
+.msg{
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.continueBtn{
+    @include globalButton;
+    color: $primary-btn-text-color;
+    background-color: $primary-btn-background-color;
+    margin-top: 2.5rem;
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 0.875rem 0;
+}

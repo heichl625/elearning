@@ -1,0 +1,235 @@
+@layout('layout/main')
+
+@section('content')
+@set('url', request.url())
+{{style('styles/courses')}}
+<div class="full-page-container">
+    @!component('components/breadcrumb', {
+        items:[
+        {
+            link: '/cms',
+            page: '主頁'
+        },
+        {
+            link: '/cms/courses',
+            page: '課程'
+        }
+        ],
+        currentPage: '建立課程'
+    })
+    <h2 class="page-title">建立課程</h2>
+   
+    @if(old('notification'))
+        <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+        <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    <form action="/cms/courses/add" method="POST" onsubmit="submitForm()" enctype="multipart/form-data">
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>課程名稱：</label>
+            <div class="col-sm-10">
+                <input placeholder='請輸入課程名稱...' name="title" class="title-input form-control form-control-sm" required/>
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>課程導師：</label>
+            <div class="col-sm-10">
+                <select name="tutor_id" class="tutor-input form-select">
+                    @each(tutor in tutors)
+                    <option value="{{tutor.id}}">{{tutor.name}}</option>
+                    @endeach
+                </select>
+            </div>
+            
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-12"><span class="required">*</span>目標學員：</label>
+            <div class="cols-sm-12">
+                <div id="editor-target">
+                    <p>請在此輸入目標學員...</p>
+                </div>
+            </div>
+            <input class="target-input" name='target'/>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-12"><span class="required">*</span>完成課程後，你會學到：</label>
+            <div class="cols-sm-12">
+                <div id="editor-learn">
+                    <p>請在此輸入...</p>
+                </div>
+            </div>
+            <input class="learn-input" name='learn'/>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-12"><span class="required">*</span>課程要點：</label>
+            <div class="cols-sm-12">
+                <div id="editor-lesson-key">
+                    <p>請在此輸入課程要點...</p>
+                </div>
+            </div>
+            <input class="lesson-key-input" name='lesson_key'/>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>課程類別：</label>
+            <div class="col-sm-10">
+                @each(category in categories)
+                <label class="form-check-label">{{category.name}}</label>
+                <input type="checkbox" name="category[]" value="{{category.id}}" class="category-input form-check-input">
+                @endeach
+            </div>
+            
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>課程簡介影片連結：</label>
+            <div class='col-sm-10'>
+                <input type='text' name="video_url" class="url-input form-control form-control-sm col-sm-12" placeholder="請貼上簡介課程影片的Vimeo連結..." required/>
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>時長：</label>
+            <div class="col-sm-10" style="display: flex">
+                <input type="number" name="duration" class="duration-input form-control form-control-sm" required>
+                <label class="col-form-label">分鐘</label>
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>規格：</label>
+            <div class="col-sm-10" style="display: flex">
+                <input type="text" name="spec" class="form-control form-control-sm" required>
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>GS1編號：</label>
+            <div class="col-sm-10" style="display: flex">
+                <input type="text" name="gs1" class="form-control form-control-sm" required>
+            </div>
+        </div>
+        <div class="input-item-img row">
+            <label class="col-form-label col-sm-12"><span class="required">*</span>課程封面圖(不大於5MB)：</label>
+            <img src="/assest/placeholder-image.png" class="uploaded-img"/>
+            <div class="col-sm-12">
+                <input type="file" name="cover_img" class='image-input form-control form-control-sm' accept=".png,.svg,.jpg,.jpeg" onchange="changeImage(event, 0)"/>
+            </div>
+            
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2">課程正價：HK$</label>
+            <div class="col-sm-10">
+                <input type="number" name="price" class="price-input form-control form-control-sm"/>
+                <span class="required">如未決定請留空，課程價錢會顯示為稍後公佈</span>
+            </div>
+        </div>
+        <div class="input-item row">  
+            <label class="col-form-label col-sm-2">課程優惠價：HK$</label>
+            <div class="col-sm-10">
+                <input type="number" name="discount_price" class="price-input form-control form-control-sm"/>
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2">課程優惠字眼：</label>
+            <div class="col-sm-10">
+                <select name="discount_text" class="discount-text-input form-select">
+                    <option>-</option>
+                    <option value="早鳥價">早鳥價</option>
+                    <option value="限時優惠價">限時優惠價</option>
+                    <option value="推廣價">推廣價</option>
+                </select>
+            </div>
+            
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2">課程優惠期(開始)：</label>
+            <div class="col-sm-10">
+                <input type="date" name="discount_start" class="date-input form-control form-control-sm"/>
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2">課程優惠期(結束)：</label>
+            <div class="col-sm-10">
+                <input type="date" name="discount_end" class="date-input form-control form-control-sm"/>
+            </div>
+        </div>
+        <div class='input-item row'>
+            <label class="col-form-label col-sm-2">課程開始日期：</label>
+            <div class="col-sm-10">
+                <input type='date' name="course_start" class="date-input form-control form-control-sm"/>
+            </div>
+        </div>
+        <div class='input-item form-check'>
+            <label class="form-check-label">顯示學生數目</label>
+            <input type='checkbox' name="display_number" class="display-number-input form-check-input"/>
+        </div>
+        <div class='input-item form-check'>
+            <label class="form-check-label">發佈課程</label>
+            <input type='checkbox' name="published" class="publish-input form-check-input"/>
+        </div>
+        <div class="required-label"><span class="required">*</span>的項目為必須填寫</div>
+        <button class="btn btn-primary submit-btn">建立課程</button>
+        
+    </form>
+
+</div>
+
+<script>
+    function changeImage(event, index){
+        var tgt = event.target || window.event.srcElement,
+        files = tgt.files;
+
+        // FileReader support
+        if (FileReader && files && files.length) {
+            var fr = new FileReader();
+            fr.onload = function () {
+                document.querySelectorAll('.uploaded-img')[index].src = fr.result;
+            }
+            fr.readAsDataURL(files[0]);
+        }
+    }
+
+    
+    function submitForm(){
+        document.querySelector('.target-input').value = document.querySelector('#editor-target .ql-editor').innerHTML;
+        document.querySelector('.learn-input').value = document.querySelector('#editor-learn .ql-editor').innerHTML
+        document.querySelector('.lesson-key-input').value = document.querySelector('#editor-lesson-key .ql-editor').innerHTML
+        document.querySelector('.display-number-input').value = document.querySelector('.display-number-input').checked
+        document.querySelector('.publish-input').value = document.querySelector('.publish-input').checked
+    }
+
+</script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+    var toolbarOption = [
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'font': [] }],
+        [{ 'header': [1, 2, 3, 4, 5, 6, 7] }],
+        [{ 'size': ['smaill', 'large', 'huge'] }],
+        [{ 'color': [] }],
+        [{ 'align': [] }],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],
+        ['blockquote'],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        ['link']
+    ]
+    let quillTarget = new Quill('#editor-target', {
+        theme: 'snow',
+        modules: {
+            toolbar: toolbarOption
+        }
+    });
+    let quillLearn = new Quill('#editor-learn', {
+        theme: 'snow',
+        modules: {
+            toolbar: toolbarOption
+        }
+    });
+    let quillLessonKey = new Quill('#editor-lesson-key', {
+        theme: 'snow',
+        modules: {
+            toolbar: toolbarOption
+        }
+    });
+
+</script>
+
+
+@endsection

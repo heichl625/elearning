@@ -1,0 +1,84 @@
+
+.transaction-table{
+    min-width: 1000px;
+}
+
+.transaction-detail-card{
+    width: 1200px;
+    margin-bottom: 70px;
+}
+.info-section{
+    padding: 10px;
+}
+.section-title{
+    margin: 16px 0;
+    text-align: center;
+}
+.info-group{
+    font-size: 18px;
+    margin: 10px;
+}
+
+.proof-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.proof-img{
+    max-width: 300px;
+    cursor: pointer;
+}
+
+.pending-text{
+    color: #c4bd5d
+}
+
+.pending{
+    background-color: #FFF77D !important
+}
+
+.verified-text{
+    color: #74c568;
+}
+
+.verified{
+    background-color: #90F181 !important;
+}
+
+.failed-text{
+    color: #FF4D4F
+}
+
+.refunding-text{
+    color: darkgrey;
+}
+
+.refunding{
+    background-color: darkgrey !important;
+}
+
+.refunded-text{
+    color: black;
+}
+
+.refunded{
+    background-color: black !important;
+    color: white
+}
+
+.failed{
+    background-color: #FF4D4F !important;
+}
+
+.change-status-section{
+    display: flex;
+    justify-content: center;
+}
+
+.status-input{
+    display: none
+}
+
+.change-status-button{
+    margin:10px
+}

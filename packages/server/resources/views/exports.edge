@@ -1,0 +1,72 @@
+@layout('layout/main')
+
+@section('content')
+{{style('styles/export')}}
+
+<div class='export-container'>
+    <div class='export-section'>
+        <h2 style="text-align:center">匯出資料</h2>
+        @if(old('error'))
+            <div class="alert alert-danger">{{old('error')}}</div>
+        @endif
+        <table class="table table-striped export-table">
+            <tr>
+                <th>#</th>
+                <th>類別</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <th>用戶資料</th>
+                <td><a href="/cms/exports?type=user">匯出</a></td>
+            </tr>
+            <tr>
+                <th>2</th>
+                <th>所有交易紀錄</th>
+                <td><a href="/cms/exports?type=transaction">匯出</a></td>
+            </tr>
+            <tr>
+                <th>3</th>
+                <th>交易紀錄(按日期)</th>
+                <td>
+                    <form action="/cms/exports/sales_per_day" method="POST">
+                        <label>開始日期</label>
+                        <input type="date" name="start_date"/>
+                        <label>結束日期</label>
+                        <input type="date" name="end_date"/>
+                        <button type="submit" style="background:none; outline:none; border:none; color:#0d6efd; text-decoration:underline">匯出</button>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <th>4</th>
+                <th>課程銷售量</th>
+               
+                <td>
+                    <form action="/cms/exports/sales_by_courses" method="POST">
+                        <select name="course_id">
+                            @each(course in courses)
+                            <option value={{course.id}}>{{course.title}}</option>
+                            @endeach
+                        </select>
+                        <button type="submit" style="background:none; outline:none; border:none; color:#0d6efd; text-decoration:underline">匯出</button>
+                    </form>
+            </tr>
+            <tr>
+                <th>5</th>
+                <th>導師課程銷售量</th>
+                <td>
+                    <form action="/cms/exports/sales_by_instructor" method="POST">
+                        <select name="instructor_id">
+                            @each(instructor in instructors)
+                            <option value={{instructor.id}}>{{instructor.name}}</option>
+                            @endeach
+                        </select>
+                        <button type="submit" style="background:none; outline:none; border:none; color:#0d6efd; text-decoration:underline">匯出</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+@endsection

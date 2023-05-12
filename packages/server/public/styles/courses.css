@@ -1,0 +1,81 @@
+
+.course-table{
+    width: 100%;
+}
+.delete-btn{
+    margin: 5px;
+}
+.input-item{
+    margin: 20px 0;
+}
+.input-item-img{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+.required{
+    color: red;
+}
+.title-input{
+    width: 90% !important;
+    height: 25px;
+    font-size: 18px;
+}
+
+.question-input{
+    width: 100% !important;
+    height: 25px;
+    font-size: 18px;
+}
+
+.tutor-input{
+    width: 200px;
+}
+.target-input, .learn-input, .lesson-key-input{
+    display: none;
+}
+
+.ql-toolbar{
+    margin-top: 5px;
+    width: 100%;
+}
+#editor-target, #editor-learn, #editor-lesson-key{
+    height: 200px;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.category-input{
+    margin-right: 10px;
+}
+.url-input{
+    width: 500px !important;
+    height: 25px;
+    font-size: 18px;
+}
+.duration-input{
+    width: 100px !important;
+}
+.uploaded-img{
+    width: 300px;
+    margin: 10px 0;
+}
+.price-input{
+    width: 70px !important;
+    margin-right: 20px;
+}
+.discount-text-input{
+    width: 200px;
+}
+.date-input{
+    margin-right: 20px;
+}
+.certificate-container{
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 10px 0;
+}
+.certificate-container a{
+    margin-right: 10px;
+}

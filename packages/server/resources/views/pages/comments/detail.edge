@@ -1,0 +1,86 @@
+@layout('layout/main');
+
+@section('content')
+{{style('styles/comments')}}
+<div class="full-page-container">
+    @!component('components/breadcrumb', {
+    items:[
+    {
+    link: '/cms/',
+    page: '主頁'
+    },
+    {
+    link: '/cms/comments',
+    page: '審批評價'
+    }],
+    currentPage: comment.id
+    })
+    @if(old('notification'))
+    <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+    <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    <div class="card comment-detail-card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div>
+                    <h3 class="section-title text-primary">評價</h3>
+                    <div class="info-group">
+                        <p class="field-label">用戶顯示名稱：</p>
+                        <p class="content-label">{{comment.first_name}} {{comment.last_name}}</p>
+                    </div>
+                    <div class="info-group">
+                        <p class="field-label">電郵：</p>
+                        <p class="content-label">{{comment.email}}</p>
+                    </div>
+                    <div class="info-group">
+                        <p class="field-label">課程名稱：</p>
+                        <p class="content-label">{{comment.title}}</p>
+                    </div>
+                    <div class="info-group">
+                        <p class="field-label">導師名稱：</p>
+                        <p class="content-label">{{comment.tutor_name}}</p>
+                    </div>
+                    <div class="info-group">
+                        <p class="field-label">評分：</p>
+                        <p class="content-label">{{comment.rating}}</p>
+                    </div>
+                    <div class="info-group">
+                        <p class="field-label">撰寫日期：</p>
+                        <p class="content-label">{{comment.created_at}}</p>
+                    </div>
+                    <div class="info-group">
+                        <p class="field-label">狀態：</p>
+                        <p class="content-label">{{comment.status}}</p>
+                    </div>
+                    <div>
+                        <p class="field-label">評價內容：</p>
+                        <div class="comment-container">
+                            <p class="content-label">{{comment.comment}}</p>
+                        </div>
+                    </div>
+
+                    <div class="status-btn-group">
+                        @if(comment.status == 'pending' || comment.status == 'hide')
+                            <form action="/cms/comments/{{comment.id}}/change-status/show" method='GET'>
+                                <button type="submit" class='btn btn-success'>顯示評價</button>
+                            </form>
+                        @endif
+                        @if(comment.status == 'show' || comment.status == 'hide')
+                            <form action="/cms/comments/{{comment.id}}/change-status/pending" method='GET'>
+                                <button type="submit" class="btn btn-warning">待審評價</button>
+                            </form>
+                        @endif
+                        @if(comment.status == 'pending' || comment.status == 'show')
+                            <form action="/cms/comments/{{comment.id}}/change-status/hide" method='GET'>
+                                <button class="btn btn-danger" type="submit">隱藏評價</button>
+                            </form>
+                        @endif
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+@endsection

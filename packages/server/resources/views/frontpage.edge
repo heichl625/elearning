@@ -1,0 +1,166 @@
+@layout('layout/main');
+
+
+@section('content')
+{{style('styles/frontpage')}}
+<div class="inner-container">
+    @!component('components/breadcrumb', {
+    items:[
+    {
+    link: '/cms',
+    page: '主頁'
+    }
+    ],
+    currentPage: '首頁設定'
+    })
+    <h1 class="page-title">首頁設定</h1>
+    @if(old('notification'))
+    <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+    <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    <br />
+    <br />
+    <h3>Banner設定</h3>
+    <br />
+    <br />
+    @if(banners.length === 0)
+    <div>
+        暫未有任何Banner圖片
+    </div>
+    @else
+
+    <div>
+        <!-- Banner Setting -->
+        <table class="frontpage-table table table-striped">
+            <tbody>
+                <tr class="frontpage-row">
+                    <th>排序</th>
+                    <th>圖片</th>
+                    <th>連結網址</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @each(banner in banners)
+                <tr clas="frontpage-row">
+                    <td>{{banner.order}}</td>
+                    <td><img src="/{{banner.image_url}}" class="uploaded-img" /></td>
+                    <td><a href="{{banner.linked_url}}">{{banner.linked_url}}</a></td>
+                    <td>
+                        <form action="/cms/move-up-banner" method="POST" enctype="multipart/form-data">
+                            <input style="display: none" value="{{banner.id}}" name="id" />
+                            <button type="submit" class="btn btn-secondary">上移</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/cms/move-down-banner" method="POST" enctype="multipart/form-data">
+                            <input style="display: none" value="{{banner.id}}" name="id" />
+                            <button type="submit" class="btn btn-secondary">下移</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/cms/delete-banner" method="POST" enctype="multipart/formdata">
+                            <input style="display: none" value="{{banner.id}}" name="id" />
+                            <button type="submit" class="btn btn-danger">刪除</button>
+                        </form>
+                    </td>
+                </tr>
+                @endeach
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+    @endif
+    <br />
+    <br />
+    <div class="input-group row">
+        <label class="col-form-label">上載新的Banner圖：(不大於5MB)</label>
+        <div class="col-sm-12">
+            <form action="/cms/upload-banner" method="POST" enctype="multipart/form-data">
+                <input class="form-control" name="banner" type="file" />
+                <label class="col-form-label">連結網址：</label>
+                <input class="form-control" name="linked_url" />
+                <br />
+                <br />
+                <button class="btn btn-secondary" type="submit">上載</button>
+            </form>
+        </div>
+
+    </div>
+    <br />
+    <br />
+
+    <!-- Trial Video Setting -->
+    <div>
+        <h3>免費試看課程設定</h3>
+        <br/>
+        <form action='/cms/frontpage/free-trial' method="POST">
+            <div class="input-group row">
+                <label class="col-form-label col-sm-1">課程1：</label>
+                <div class="col-sm-11">
+                    <select class="form-select form-control" name='course1' id="trialCourse1">
+                        <option value="">---請選擇課程---</option>
+                        @each(course in courseList)
+                            <option value="{{course.id}}">{{course.title}}</option>
+                        @endeach
+                    </select>
+                    <script course_id="{{trialCourseList.course1}}">
+                        let trialCourse1Ref = document.querySelectorAll('#trialCourse1 option');
+                        for(let i = 0; i<trialCourse1Ref.length; i++){
+                            if(trialCourse1Ref[i].value === document.currentScript.getAttribute('course_id')){
+                                trialCourse1Ref[i].selected = 'selected'
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+            <div class="input-group row">
+                <label class="col-form-label col-sm-1">課程2：</label>
+                <div class="col-sm-11">
+                    <select class="form-select form-control" name='course2' id="trialCourse2">
+                        <option value="">---請選擇課程---</option>
+                        @each(course in courseList)
+                            <option value="{{course.id}}">{{course.title}}</option>
+                        @endeach
+                    </select>
+                    <script course_id="{{trialCourseList.course2}}">
+                        let trialCourse2Ref = document.querySelectorAll('#trialCourse2 option');
+                        for(let i = 0; i<trialCourse2Ref.length; i++){
+                            if(trialCourse2Ref[i].value === document.currentScript.getAttribute('course_id')){
+                                trialCourse2Ref[i].selected = 'selected'
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+            <div class="input-group row">
+                <label class="col-form-label col-sm-1">課程3：</label>
+                <div class="col-sm-11">
+                    <select class="form-select form-control" name="course3" id="trialCourse3">
+                        <option value="">---請選擇課程---</option>
+                        @each(course in courseList)
+                            <option value="{{course.id}}">{{course.title}}</option>
+                        @endeach
+                    </select>
+                    <script course_id="{{trialCourseList.course3}}">
+                        let trialCourse3Ref = document.querySelectorAll('#trialCourse3 option');
+                        for(let i = 0; i<trialCourse3Ref.length; i++){
+                            if(trialCourse3Ref[i].value === document.currentScript.getAttribute('course_id')){
+                                trialCourse3Ref[i].selected = 'selected'
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+            <br/>
+            <button type="submit" class="btn btn-secondary">設定</button>
+        </form>
+        
+    </div>
+</div>
+@endsection

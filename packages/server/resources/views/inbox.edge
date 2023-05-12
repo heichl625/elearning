@@ -1,0 +1,257 @@
+@layout('layout/main')
+
+@section('content')
+{{style('styles/inbox')}}
+
+<div class="inbox-container">
+    @if(user.role == 'admin')
+    <a href='/cms/tutors' class='inbox-backbtn'>返回</a>
+    @endif
+    <div class="inbox-content-container {{user.role == 'admin' ? 'admin-inbox' : ''}}">
+        <div class="studentList">
+            @if(students.length > 0)
+            @each(student in students)
+            @if(student.user_id == user_id)
+            <a class="studentBlock active" href='?user_id={{student.user_id}}'>
+                <p class="studentID">學生 #{{student.user_id}}</p>
+            </a>
+            @else
+            <a class="studentBlock" href='?user_id={{student.user_id}}'>
+                <p class="studentID">學生 #{{student.user_id}}</p>
+                @if(student.unreadMsg > 0)
+                <span class="badge bg-danger">{{student.unreadMsg}}</span>
+                @endif
+            </a>
+            @endif
+            @endeach
+            @else
+            <p class="noMessage">未有任何對話</p>
+            @endif
+        </div>
+        <div class='chatContainer'>
+            @if(user_id)
+            <div class="userbar">
+                <p class='studentID'>學生 #{{user_id}}</p>
+            </div>
+            <div class='messageList'>
+                @if(messages && messages.length > 0)
+                @each((message, key) in messages)
+                @if(message.sent_by == 'tutor')
+                <div class="tutorMsgContainer">
+                    @if(key > 1)
+                    @if(message.dateStr != messages[key-1].dateStr)
+                    <p class="dateText">{{message.months}}月{{message.date}}日</p>
+                    @endif
+                    @elseif(key == 0)
+                    <p class="dateText">{{message.months}}月{{message.date}}日</p>
+                    @endif
+                    <div class="tutorMsgBlock">
+                        <p class="timeText">{{message.hours}}:{{message.minutes}}</p>
+                        <div class="tutorMsgBubble">
+                            @if(message.img_url)
+                            <img src="{{message.img_url}}" class="messageImage"
+                                onClick="enlargeImage('{{message.img_url}}')" />
+                            @endif
+                            @if(message.file_url)
+                            <p class="messageFile"
+                                onclick="downloadFile('{{message.file_url}}', '{{message.file_name}}')">
+                                {{message.file_name}}</p>
+                            @endif
+                            @if(message.message)
+                            <p class="message">{{message.message}}</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @else
+                <div class="userMsgContainer">
+                    @if(key > 1)
+                    @if(message.dateStr != messages[key-1].dateStr)
+                    <p class="dateText">{{message.months}}月{{message.date}}日</p>
+                    @endif
+                    @elseif(key == 0)
+                    <p class="dateText">{{message.months}}月{{message.date}}日</p>
+                    @endif
+                    <div class="userMsgBlock">
+                        <div class="userMsgBubble">
+                            @if(message.img_url)
+                            <img src="{{message.img_url}}" class="messageImage"
+                                onClick="enlargeImage('{{message.img_url}}')" />
+                            @endif
+                            @if(message.file_url)
+                            <p class="messageFile"
+                                onclick="downloadFile('{{message.file_url}}', '{{message.file_name}}')">
+                                {{message.file_name}}</p>
+                            @endif
+                            @if(message.message)
+                            <p class="message">{{message.message}}</p>
+                            @endif
+                        </div>
+                        <p class="timeText">{{message.hours}}:{{message.minutes}}</p>
+
+                    </div>
+                </div>
+                @endif
+                @endeach
+                @endif
+                <script>
+                    let containerRef = document.querySelectorAll('.messageList')[0]
+                containerRef.scrollTop = containerRef.scrollHeight;
+                
+
+                function enlargeImage(url) {
+                    let newWindow = window.open('')
+                    newWindow.document.write(
+                        "<iframe width='100%' height='100%' src='" + url + "'></iframe>"
+                    )
+                }
+
+                function downloadFile(path, file_name) {
+
+                    fetch('/cms/download-file', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            path: path
+                        })
+                    })
+                        .then(result => result.json())
+                        .then(data => {
+                            if (!data.error) {
+                                let a = document.createElement('a')
+                                a.href = data.url;
+                                a.download = file_name
+                                a.click();
+                                a.remove();
+                            }
+                        })
+                }
+                </script>
+            </div>
+            @if(user.role == 'tutor')
+            <form class="inputBlock" action='/cms/tutor-send-message' method="POST" enctype="multipart/form-data">
+                <div id="attachedFile"></div>
+                <div class="inputRow">
+                    <input class="hiddenInput" name="user_id" value="{{user_id}}" />
+                    <img src='/assest/chat_media@3x.png' class="icon" onclick="uploadImage()" />
+                    <input type='file' accept="image/*" class='hiddenInput' name="image" id='image-upload'
+                        onchange="changeImage(event)" />
+                    <img src='/assest/chat_document@3x.png' class="icon" onclick="uploadFile()" />
+                    <input type='file' accept=".doc,.docx,.xlsx,.ppt,.pptx,.pdf" name="file" class='hiddenInput'
+                        id='file-upload' onchange="changeFile(event)" />
+                    <textarea class="msgInput" placeholder="請輸入" name="message"></textarea>
+                    <button type='submit' class="sendBtn">
+                        <img src='/assest/chat_send@3x.png' class="icon" />
+                    </button>
+
+                </div>
+                <script>
+                    let imageInputRef = document.getElementById('image-upload')
+                let fileInputRef = document.getElementById('file-upload')
+                let inputBlockRef = document.getElementsByClassName('inputBlock')[0];
+                let attachedFileRef = document.querySelector('#attachedFile');
+                let inputFieldRef = document.querySelectorAll('.msgInput')[0];
+
+                inputFieldRef.addEventListener('input', autoResize, false)
+
+                function autoResize(){
+                    this.style.height = 'auto';
+                    this.style.height = this.scrollHeight + 'px';
+                }
+
+                function uploadImage() {
+                    imageInputRef.click();
+                }
+                function changeImage(event) {
+
+                    if(Math.floor(event.target.files[0].size/1024) > 5120){
+                        imageInputRef.value='';
+                        alert('圖片的大小必須小於5MB');
+                        return;
+                    }
+
+                    inputBlockRef.classList.add('largerBlock');
+                    let attacheImageContainer;
+                    if (!document.querySelector('.attached-image-container')) {
+                        attacheImageContainer = document.createElement('div')
+                        attacheImageContainer.classList.add('attached-image-container')
+                    }else{
+                        attacheImageContainer = document.querySelector('.attached-image-container')[0];
+                    }
+
+                    let imageUploaded = document.createElement('img')
+                    let closeImgRef = document.createElement('img')
+                    closeImgRef.src = '/assest/close_popup@3x.png'
+                    closeImgRef.classList.add('attached-remove-btn')
+                    closeImgRef.onclick = function () {
+                        imageInputRef.value = ''
+                        attacheImageContainer.remove();
+                        if(!attachedFileRef.hasChildNodes()){
+                            inputBlockRef.classList.remove('largerBlock')
+                        }
+                    }
+                    
+                    let fr = new FileReader();
+                    fr.onload = function () {
+                        imageUploaded.src = fr.result;
+                    }
+
+                    fr.readAsDataURL(event.target.files[0])
+                    imageUploaded.classList.add('previewImg');
+                    attacheImageContainer.appendChild(imageUploaded);
+                    attacheImageContainer.appendChild(closeImgRef);
+                    attachedFileRef.appendChild(attacheImageContainer);
+                }
+                function uploadFile() {
+                    fileInputRef.click();
+                }
+                function changeFile(event) {
+
+                    if(Math.floor(event.target.files[0].size/1024) > 5120){
+                        fileInputRef.value='';
+                        alert('檔案的大小必須小於5MB');
+                        return;
+                    }
+
+                    inputBlockRef.classList.add('largerBlock');
+                    let attacheFileContainer;
+                    if (!document.querySelector('.attached-file-container')) {
+                        attacheFileContainer = document.createElement('div')
+                        attacheFileContainer.classList.add('attached-file-container')
+                    }else{
+                        attacheFileContainer = document.querySelector('.attached-file-container')[0];
+                    }
+
+                    let fileUploaded = document.createElement('div')
+                    let closeFileRef = document.createElement('img')
+                    closeFileRef.src = '/assest/close_popup@3x.png'
+                    closeFileRef.classList.add('attached-remove-btn')
+                    closeFileRef.onclick = function () {
+                        fileInputRef.value = ''
+                        attacheFileContainer.remove();
+                        if(!attachedFileRef.hasChildNodes()){
+                            inputBlockRef.classList.remove('largerBlock')
+                        }
+                        
+                    }
+                    fileUploaded.classList.add('previewFile');
+                    let fileNameText = document.createTextNode(event.target.files[0].name)
+                    fileUploaded.appendChild(fileNameText)
+                    attacheFileContainer.appendChild(fileUploaded);
+                    attacheFileContainer.appendChild(closeFileRef);
+                    attachedFileRef.appendChild(attacheFileContainer);
+
+                }
+                </script>
+            </form>
+            @endif
+            @endif
+
+        </div>
+    </div>
+    <script>
+        let listRef = document.querySelector('.messageList')
+        listRef.scrollTop = listRef.scrollHeight;
+    </script>
+
+</div>
+@endsection

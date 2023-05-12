@@ -1,0 +1,87 @@
+@layout('layout/main')
+
+@section('content')
+{{style('styles/promotion')}}
+<div class="full-page-container">
+    @!component('components/breadcrumb', {
+        items:[
+        {
+            link: '/cms',
+            page: '主頁'
+        }
+        ],
+        currentPage: '推廣優惠Popup設定'
+    })
+
+    <h2 class="page-title">推廣優惠Popup設定</h2>
+    @if(old('notification'))
+    <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+    <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    <form action="/cms/promotion-discount" method="POST" enctype="multipart/form-data">
+        <div class="input-item row">
+            <label class="col-form-label col-sm-3"><span class="required">*</span>推廣名稱： </label>
+            <div class="col-sm-9">
+                <input placeholder='請輸入推廣名稱...' name="title" class="title-input form-control form-control-sm" value="{{promotion.title || ''}}"/>
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-3"><span class="required">*</span>推廣簡介：</label>
+            <div class="col-sm-9">
+                <textarea name="description" class="description-input form-control form-control-sm" placeholder="請輸入推廣簡介">{{promotion.description || ''}}</textarea>
+            </div>
+        </div>
+        <div class="input-item row">
+            <label class="col-form-label col-sm-3"><span class="required">*</span>優惠碼：</label>
+            <div class="col-sm-9">
+                <select name="coupon_id" class="form-select coupon-input" id="coupon_id">
+                    <option value="">---請選擇優惠碼---</option>
+                    @each(coupon in coupons)
+                        <option value="{{coupon.id}}">{{coupon.code || ''}}</option>
+                    @endeach
+                </select>
+                <script coupon_id="{{promotion.coupon_id}}">
+                    let couponRef = document.querySelectorAll('#coupon_id option');
+                    for(let i= 0; i<couponRef.length; i++){
+                        if(couponRef[i].value === document.currentScript.getAttribute('coupon_id')){
+                            couponRef[i].selected = 'selected'
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+        <div class="input-item-img row">
+            <label class="col-form-label col-sm-12">優惠推廣圖片上載：</label>
+            @if(promotion.promo_img)
+                <img src="{{promotion.promo_img}}" class="uploaded-img" />
+            @endif
+            <div class="col-sm-12">
+                <input type="file" name="promo_img" class='image-input form-control form-control-sm'
+                    accept=".png,.svg,.jpg,.jpeg" onchange="changePromoImg(event)" />
+            </div>
+        </div>
+        <div class="required-label"><span class="required">*</span>為必填項目</div>
+        <button class="submit-btn btn btn-primary">儲存</button>
+    </form>
+    <script>
+
+        function changePromoImg(event) {
+            var tgt = event.target || window.event.srcElement,
+                files = tgt.files;
+
+            // FileReader support
+            if (FileReader && files && files.length) {
+                var fr = new FileReader();
+                fr.onload = function () {
+                    document.querySelector('.uploaded-img').src = fr.result;
+                }
+                fr.readAsDataURL(files[0]);
+            }
+        }
+
+    </script>
+
+</div>
+@endsection

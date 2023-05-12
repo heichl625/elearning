@@ -1,0 +1,36 @@
+@import '../../styles/color.scss';
+@import '../../styles//button.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    padding: 5em 5.875em;
+    box-sizing: border-box;
+
+    @include lg{
+        padding: 3em 5%;
+        width: 90vw;
+    }
+}
+
+.msg{
+    margin-top: 1.5em;
+    margin-bottom: 2.5em;
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 2rem;
+}
+
+.removeBtn{
+    @include globalButton;
+    width: 100%;
+    padding: 0.875em 0;
+    box-sizing: border-box;
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+    outline: none;
+    border: none;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+}
+

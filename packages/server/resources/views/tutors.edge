@@ -1,0 +1,139 @@
+@layout('layout/main');
+
+@section('content')
+@!component('components/submenu', {
+items: [
+{
+title: '加入新導師',
+link: '/cms/tutors/add'
+}
+],
+page: '導師'
+})
+{{style('styles/tutors')}}
+<div class="inner-container">
+    @if(keywords)
+        @!component('components/breadcrumb', {
+            items:[
+            {
+                link: '/cms',
+                page: '主頁'
+            },
+            {
+                link: '/cms',
+                page: '導師'
+            }
+            ],
+            currentPage: keywords
+        })
+    @else
+        @!component('components/breadcrumb', {
+            items:[
+            {
+            link: '/cms',
+            page: '主頁'
+            }
+            ],
+            currentPage: '導師'
+        })
+    @endif
+    <h1 class="page-title">導師一覽</h1>
+    @if(old('notification'))
+    <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+    <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    @if(tutors.length === 0)
+    <div>
+        暫未有任何導師
+    </div>
+    @else
+    <nav class="Page navigation pagination-container">
+        <ul class="pagination">
+            @each(page in range(1, lastPage+1))
+            @if(page == currentPage)
+            <li class="page-item active">
+                <a class="page-link" href="?page={{page}}&limit={{limit}}&keywords={{keywords}}">{{page}}</a>
+            </li>
+            @else
+            <li class="page-item">
+                <a class="page-link" href="?page={{page}}&limit={{limit}}&keywords={{keywords}}">{{page}}</a>
+            </li>
+            @endif
+            @endeach
+        </ul>
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="以名稱/電郵/簡介/課程管理員搜尋" aria-label="Search" name="keywords" />
+            <button class="btn btn-outline-primary" type="submit">搜尋</button>
+        </form>
+    </nav>
+    <table class="tutor-table table table-striped">
+        <tbody>
+            <tr class="tutor-row">
+                <th>導師名稱</th>
+                <th>電郵</th>
+                <th>課程管理員</th>
+                <th>最後更新時間</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            @each(tutor in tutors)
+            <tr class="tutor-row">
+                <td>{{tutor.name}}</td>
+                <td>{{tutor.email}}</td>
+                <td>{{tutor.course_developer_name}}</td>
+                <td>{{tutor.updated_at.toLocaleDateString()}} {{ tutor.updated_at.toLocaleTimeString()}}</td>
+                <td><a href="/cms/tutors/{{tutor.id}}/inbox">查看導師Inbox</a></td>
+                <td><a href="/cms/tutors/edit/{{tutor.id}}">修改</a></td>
+                <td>
+                    <form action="/cms/tutors/delete/{{tutor.id}}" method="GET" class="delete-btn">
+                        <button type='submit' onclick="return confirm('你要刪除此導師嗎？')" class="btn btn-danger">刪除</button>
+                    </form>
+                </td>
+
+            </tr>
+            @endeach
+
+        </tbody>
+
+    </table>
+    <div class="page-limit">
+        <p>每頁顯示：</p>
+        <nav class="Page navigation">
+            <ul class="pagination">
+                @if(limit == 10)
+                <li class="page-item active">
+                    @else
+                <li class="page-item">
+                    @endif
+                    <a class="page-link" href="?page=1&limit=10&keywords={{keywords}}">10</a>
+                </li>
+                @if(limit == 20)
+                <li class="page-item active">
+                    @else
+                <li class="page-item">
+                    @endif
+                    <a class="page-link" href="?page=1&limit=20&keywords={{keywords}}">20</a>
+                </li>
+                @if(limit == 50)
+                <li class="page-item active">
+                    @else
+                <li class="page-item">
+                    @endif
+                    <a class="page-link" href="?page=1&limit=50&keywords={{keywords}}">50</a>
+                </li>
+                @if(limit == 100)
+                <li class="page-item active">
+                    @else
+                <li class="page-item">
+                    @endif
+                    <a class="page-link" href="?page=1&limit=100&keywords={{keywords}}">100</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    @endif
+</div>
+@endsection

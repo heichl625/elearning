@@ -1,0 +1,53 @@
+@layout('layout/main')
+
+@section('content')
+{{style('styles/promotion')}}
+<div class="full-page-container">
+    @!component('components/breadcrumb', {
+        items:[
+        {
+            link: '/cms',
+            page: '主頁'
+        }
+        ],
+        currentPage: '推廣優惠Popup設定'
+    })
+
+    <h2 class="page-title">推廣優惠Popup設定</h2>
+    @if(old('notification'))
+    <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+    <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+        <div class="row">
+            <label class="col-form-label col-sm-3"><span class="required">*</span>推廣名稱： </label>
+            <div class="col-sm-9 promotion-info-container">
+               <p class="promotion-info">{{promotion.title || ''}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-form-label col-sm-3"><span class="required">*</span>推廣簡介：</label>
+            <div class="col-sm-9 promotion-info-container">
+                <p class="promotion-info">{{promotion.description || ''}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-form-label col-sm-3"><span class="required">*</span>優惠碼：</label>
+            <div class="col-sm-9 promotion-info-container">
+                <p class="promotion-info">{{promotion.coupon_code || ''}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-form-label col-sm-12">優惠推廣圖片：(不大於5MB)</label>
+            @if(promotion.promo_img)
+                <img src="{{promotion.promo_img}}" class="uploaded-img" />
+            @endif
+        </div>
+        <div class="row">
+            <a href='/cms/promotion-discount/edit' class='btn btn-secondary modify-btn'>更改</a>
+            <a href='/cms/promotion-discount/clear' class='btn btn-danger modify-btn'>清除</a>
+        </div>
+
+</div>
+@endsection

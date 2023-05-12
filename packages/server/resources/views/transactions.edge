@@ -1,0 +1,154 @@
+@layout('layout/main');
+
+
+@section('content')
+{{style('styles/transactions')}}
+<div class="full-page-container">
+    @if(keywords)
+    @!component('components/breadcrumb', {
+    items:[
+    {
+    link: '/cms',
+    page: '主頁'
+    },
+    {
+    link: '/cms/transactions',
+    page: '交易紀錄'
+    }
+    ],
+    currentPage: keywords
+    })
+    @else
+    @!component('components/breadcrumb', {
+    items:[
+    {
+    link: '/cms',
+    page: '主頁'
+    }
+    ],
+    currentPage: '交易紀錄'
+    })
+    @endif
+    <h1 class="page-title">交易紀錄一覽</h1>
+    @if(old('notification'))
+    <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+    <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    @if(transactions.length === 0)
+    <div>
+        暫未有任何交易紀錄
+    </div>
+    @else
+    <nav class="Page navigation pagination-container">
+        <ul class="pagination">
+            @each(page in range(1, lastPage+1))
+            @if(page == currentPage)
+            <li class="page-item active">
+                <a class="page-link"
+                    href="?page={{page}}&limit={{limit}}&keywords={{keywords}}&status={{status}}">{{page}}</a>
+            </li>
+            @else
+            <li class="page-item">
+                <a class="page-link"
+                    href="?page={{page}}&limit={{limit}}&keywords={{keywords}}&status={{status}}">{{page}}</a>
+            </li>
+            @endif
+            @endeach
+        </ul>
+        <form class="d-flex" action="/cms/transactions">
+            <input class="form-control me-2" type="search" placeholder="以用戶電郵/電話或用戶名稱搜尋" aria-label="Search"
+                name="keywords" />
+            <button class="btn btn-outline-primary" type="submit">搜尋</button>
+        </form>
+    </nav>
+    <table class="transaction-table table">
+        <tbody>
+            <tr class="transaction-row">
+                <th>交易編號</th>
+                <th>用戶電郵</th>
+                <th>付款方式</th>
+                <th>交易金額</th>
+                <th>交易狀態</th>
+                <th>交易建立時間</th>
+                <th></th>
+            </tr>
+            @each(transaction in transactions)
+            <tr class="transaction-row" id="transaction_{{{transaction.id}}">
+                <td><a href="/cms/transactions/{{transaction.id}}">{{transaction.id}}</a></td>
+                <td><a href="/cms/users/{{transaction.user_id}}">{{transaction.email}}</a></td>
+                <td>{{transaction.method}}</td>
+                <td>HKD${{transaction.total}}</td>
+                <td class="status">{{transaction.status}}</td>
+                <td>{{transaction.created_at.toLocaleDateString()}} {{ transaction.created_at.toLocaleTimeString()}}
+                </td>
+                <td><a href="/cms/transactions/{{transaction.id}}">檢視交易詳情</a></td>
+            </tr>
+            <script status="{{transaction.status}}" id="{{transaction.id}}" }>
+                switch (document.currentScript.getAttribute('status')) {
+                    case '待確認':
+                        document.querySelector('#transaction_' + document.currentScript.getAttribute('id') + ' .status').classList.add('pending')
+                        break;
+                    case '已確認':
+                        document.querySelector('#transaction_' + document.currentScript.getAttribute('id') + ' .status').classList.add('verified')
+                        break;
+                    case '失敗':
+                        document.querySelector('#transaction_' + document.currentScript.getAttribute('id') + ' .status').classList.add('failed')
+                        break;
+                    case '已失效':
+                        document.querySelector('#transaction_' + document.currentScript.getAttribute('id') + ' .status').classList.add('failed')
+                        break;
+                    case '退款中':
+                        document.querySelector('#transaction_' + document.currentScript.getAttribute('id') + ' .status').classList.add('refunding')
+                        break;
+                    case '已退款':
+                        document.querySelector('#transaction_' + document.currentScript.getAttribute('id') + ' .status').classList.add('refunded')
+                        break;
+                    default:
+                        break;
+                }
+            </script>
+            @endeach
+
+        </tbody>
+
+    </table>
+    <div class="page-limit">
+        <p>每頁顯示：</p>
+        <nav class="Page navigation">
+            <ul class="pagination">
+                @if(limit == 10)
+                <li class="page-item active">
+                    @else
+                <li class="page-item">
+                    @endif
+                    <a class="page-link" href="?page=1&limit=10&keywords={{keywords}}&status={{status}}">10</a>
+                </li>
+                @if(limit == 20)
+                <li class="page-item active">
+                    @else
+                <li class="page-item">
+                    @endif
+                    <a class="page-link" href="?page=1&limit=20&keywords={{keywords}}&status={{status}}">20</a>
+                </li>
+                @if(limit == 50)
+                <li class="page-item active">
+                    @else
+                <li class="page-item">
+                    @endif
+                    <a class="page-link" href="?page=1&limit=50&keywords={{keywords}}&status={{status}}">50</a>
+                </li>
+                @if(limit == 100)
+                <li class="page-item active">
+                    @else
+                <li class="page-item">
+                    @endif
+                    <a class="page-link" href="?page=1&limit=100&keywords={{keywords}}&status={{status}}">100</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    @endif
+</div>
+@endsection

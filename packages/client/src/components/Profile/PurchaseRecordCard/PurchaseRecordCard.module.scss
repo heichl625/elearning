@@ -1,0 +1,384 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/button.scss';
+@import '../../../styles/skeleton.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    border: 1px solid $border-color;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.skeleton{
+    display: flex;
+    padding: 1.5rem 2.5rem;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+
+    @include lg{
+        padding: 1.5em 5%;
+    }
+}
+
+.top{
+    display: flex;
+    padding: 1.5rem 2.5rem 0;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+
+    @include lg{
+        flex-direction: column-reverse;
+        padding: 1em 0;
+    }
+}
+
+.courseList{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 70%;
+}
+
+.courseRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 100%;
+
+    @include lg{
+        flex-direction: column;
+        padding: 1em 1.5em;
+        box-sizing: border-box;
+        margin-bottom: 0;
+    }
+}
+
+.courseCoverSkeleton{
+    width: 8.3125rem;
+    height: 5.5625rem;
+    object-fit: cover;
+    background-color: $skeleton-color;
+    position: relative;
+    overflow: hidden;
+
+    &::before{
+        @include skeleton;
+    }
+
+    @include lg{
+        margin-right: 1em 
+    }
+}
+
+.courseTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.courseCover{
+    width: 8.3125rem;
+    height: 5.5625rem;
+    object-fit: cover;
+
+    @include lg{
+        width: 30%;
+        height: auto;
+    }
+}
+
+.courseInfo{
+    flex-basis: 60%;
+
+    @include lg{
+        flex-basis: 65%;
+    }
+}
+
+.coursePriceContainer{
+    flex-basis: 20%;
+
+    @include lg{
+        display: flex;
+        flex-basis: 100%;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .courseRowTitle{
+        @include lg{
+            font-size: 0.75rem;
+            line-height: 1rem;
+            font-weight: 500;
+        }
+    }
+
+    .courseRowTitleSkeleton{
+        @include lg{
+            width: 7em;
+            height: 1em;
+            margin-top: 1em;
+        }
+    }
+
+    .courseRowDesc{
+        @include lg{
+            font-size: 0.75rem;
+            line-height: 1rem;
+        }
+    }
+
+    .courseRowDescSkeleton{
+        @include lg{
+            width: 5em;
+            margin-top: 1em;
+        }
+    }
+}
+
+.courseRowTitle{
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    font-weight: 600;
+
+    @include lg{
+        font-size: 1rem;
+        line-height: 1.5rem;
+        margin: 0.5em 0;
+    }
+}
+
+.courseRowTitleSkeleton{
+    width: 70%;
+    height: 2rem;
+    background-color: $skeleton-color;
+    margin-bottom: 1em; 
+    margin-left: 1em;
+    position: relative;
+    overflow: hidden;
+
+    &::before{
+        @include skeleton;
+    }
+
+    @include lg{
+        margin-left: 0;
+    }
+}
+
+.courseRowDesc{
+    color: $secondary-text-color;
+    font-size: 0.875rem;
+    line-height: 1rem;
+
+    @include lg{
+        margin: 0.5em 0;
+    }
+}
+
+.courseRowDescSkeleton{
+    height: 1rem;
+    width: 55%;
+    margin-left: 1em;
+    background-color: $skeleton-color;
+    position: relative;
+    overflow: hidden;
+
+    &::before{
+        @include skeleton;
+    }
+
+    @include lg{
+        margin-left: 0;
+    }
+}
+
+.orderStatus{
+    flex-basis: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 1rem;
+
+    @include lg{
+        align-items: flex-start;
+        flex-basis: 100%;
+        margin-top: 0;
+        padding-bottom: 1em;
+        border-bottom: 1px solid $border-color;
+        padding: 0em 1.5em 1em;
+    }
+}
+
+.statusText{
+    font-size: 1.25rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.statusTextSkeleton{
+    margin: 0;
+    background-color: $skeleton-color;
+    height: 2rem;
+    width: 90%;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+
+    &::before{
+        @include skeleton;
+    }
+}
+
+.successStatus{
+    color: #15BF93;
+}
+
+.pendingStatus{
+    color: $disabled-text-color;
+}
+
+.failedStatus{
+    color: $error-text-color;
+}
+
+.orderNumber{
+    font-size: 0.875rem;
+    line-height: 1rem;
+    margin: 0;
+    color: $disabled-text-color;
+}
+
+.orderNumberSkeleton{
+    background-color: $skeleton-color;
+    margin: 0;
+    height: 1rem;
+    width: 80%;
+    position: relative;
+    overflow: hidden;
+
+    &::before{
+        @include skeleton;
+    }
+}
+
+.desktopBtnGroup{
+    @include lg{
+        display: none;
+    }
+}
+
+.invalidTransaction{
+    text-align: right;
+    color: $error-text-color;
+    font-size: 1rem;
+    margin: 0.5em 0;
+}
+
+.mobileBtnGroup{
+
+    display: none;
+
+    @include lg{
+        display: block;
+        width: 100%;
+    }
+}
+
+.payBtnContainer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 2.5rem 1.25rem;
+
+    @include lg{
+        padding: 0;
+        margin-top: 0.75em;
+    }
+}
+
+.payBtn{
+    @include globalButton;
+    padding: 0.875rem 3.4375rem;
+    color: $secondary-btn-text-color;
+    background-color: $secondary-btn-background-color;
+    border-color: $secondary-btn-border-color;
+    outline: none;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+
+    @include lg{
+        padding: 0.875em 0em;
+        width: 100%;
+        line-height: normal;
+    }
+}
+
+.bottom{
+    width: 100%;
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 2.5rem;
+    box-sizing: border-box;
+
+    @include lg{
+        padding: 1.5em;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+}
+
+.orderDetail{
+    margin: 0.5rem 0;
+    font-size: 0.75rem;
+    color: $secondary-text-color;
+    line-height: 1rem;
+}
+
+.priceContainer{
+
+    table{
+        border-collapse: collapse;
+    }
+
+    tr{
+        @include lg{
+            display: flex !important;
+            justify-content: space-between;
+        }
+    }
+
+    td{
+        margin: 0.5rem 0;
+        font-size: 0.75rem;
+        color: $secondary-text-color;
+        line-height: 1rem;
+        text-align: right;
+        padding: 0.25rem 0;
+
+        @include lg{
+            display: block;
+            padding: 0;
+            margin: 0 0 0.5em;
+        }
+    }
+
+    .priceColTitle{
+        padding-right: 2.25rem;
+
+
+    }
+
+    .finalPrice{
+        color: $highlight-text-color;
+    }
+}

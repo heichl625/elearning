@@ -1,0 +1,64 @@
+.comment-table{
+    width: 100%;
+}
+
+table th, table td{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.comment-detail-card{
+    width: 1200px;
+    margin-bottom: 70px;
+    padding: 2rem;
+}
+
+.section-title{
+    text-align: center;
+}
+
+.info-group{
+    font-size: 18px;
+    display: flex;
+}
+
+.field-label{
+    font-weight: 600;
+}
+
+.comment-container{
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    width: 100%;
+    min-height: 200px;
+    padding: 1rem;
+}
+
+.status-btn-group{
+    display: flex;
+    justify-content: center;
+}
+
+.status-btn-group button{
+    margin: 1rem;
+}
+
+.delete-btn{
+    margin: 5px;
+}
+.submit-btn{
+    margin-top: 10px;
+}
+
+.hide{
+    color: lightcoral;
+}
+
+.pending{
+    background-color: rgb(250, 180, 152) !important;
+}
+
+.show{
+    background-color: rgb(169, 233, 169) !important;
+}
+

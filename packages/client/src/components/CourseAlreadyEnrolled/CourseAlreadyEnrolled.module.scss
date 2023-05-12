@@ -1,0 +1,44 @@
+@import '../../styles/color.scss';
+@import '../../styles/button.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    padding: 5em 5.875em;
+    width: 43.75rem;
+    box-sizing: border-box;
+
+    @include lg{
+        width: 90vw;
+        padding: 3em 5%;
+    }
+}
+
+.msg{
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    color: $secondary-text-color;
+    margin-top: 1.5em;
+
+    @include lg{
+        font-size: 0.875rem;
+    }
+}
+
+.backBtn{
+    @include globalButton;
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    padding: 0.875em 0;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    margin-top: 2.5em;
+
+    @include lg{
+        font-size: 1.125rem;
+    }
+}

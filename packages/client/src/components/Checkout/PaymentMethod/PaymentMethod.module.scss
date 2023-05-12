@@ -1,0 +1,132 @@
+@import '../../../styles/input.scss';
+@import '../../../styles/color.scss';
+@import '../../../styles/button.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile{
+    @include lg{
+        display: flex !important;
+    }
+}
+
+.top{
+    width: 100%;
+
+    @include lg{
+        width: 100%;
+    }
+}
+
+.tab{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+
+    @include lg{
+        padding: 0 5%;
+        background-color: $primary-background-color;
+        cursor: pointer;
+    }
+}
+
+.tabClosed{
+    @include lg{
+        margin-bottom: 0.5em;
+    }
+}
+
+.arrow{
+    display: none;
+    width: 1.5rem;
+    height: 1.5rem;
+
+    @include lg{
+        display: block;
+    }
+}
+
+.title{
+    font-size: 1.875rem;
+    color: $secondary-text-color;
+    line-height: 2.625rem;
+    font-weight: 600;
+
+    @include lg{
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+    }
+}
+
+.optionContainer{
+    display: flex;
+
+    @include lg{
+        background-color: $primary-background-color;
+        padding: 1em 5%;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        justify-content: space-between;
+        display: none;
+    }
+}
+
+.option{
+    width: 12.5rem;
+    height: 9.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $border-color;
+    border-radius: 0.25rem;
+    margin-right: 1.5rem;
+    cursor: pointer;
+
+    @include lg{
+        width: 48%;
+        margin-right: 0;
+        margin-bottom: 1em;
+    }
+}
+
+.option:last-of-type{
+    margin-right: 0;
+}
+
+.optionTitle{
+    color: $secondary-text-color;
+    line-height: 1.5rem;
+    font-size: 1.5rem;
+
+}
+
+.methodImg{
+    height: 2.25rem;
+}
+
+.active{
+    outline: 3px solid $primary-btn-background-color;
+    outline-offset: -3px;
+}
+
+.paymentDetailContainer{
+    flex-grow: 1;
+    min-height: 10rem;
+
+    @include lg{
+        display: none;
+    }
+}
+
+.creditCardInfoContainer{
+    display: flex;
+    position: relative;
+    flex-grow: 1;
+}

@@ -1,0 +1,22 @@
+@import '../../styles/color.scss';
+
+
+.container{
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: $primary-background-color;
+    border: solid 1px $secondary-text-color;
+    border-radius: 5px;
+}
+
+.priceContainer{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.priceContainer p{
+    margin: 0;
+}

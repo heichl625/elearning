@@ -1,0 +1,92 @@
+@import '../../styles/color.scss';
+@import '../../styles/button.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    width: 100%;
+    padding: 6rem 10rem;
+    box-sizing: border-box;
+
+    @include lg{
+        padding: 6em 5%;
+    }
+}
+
+.titleContainer{
+    margin-bottom: 3.875rem
+}
+
+.title{
+    font-size: 3.125rem;
+    color: $secondary-text-color;
+    font-weight: 600;
+    line-height: 4.5rem;
+    margin: 0;
+    padding-bottom: 1rem;
+}
+
+.divider{
+    width: 6.25rem;
+    height: 0.5rem;
+    background-color: $primary-btn-background-color;
+}
+
+.orderNumber{
+    color: $primary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+}
+
+.msg{
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+}
+
+.btnGroup{
+    display: flex;
+    margin-top: 5rem;
+
+    @include lg{
+        flex-direction: column;
+        margin-top: 2em;
+    }
+}
+
+.normalBtn{
+    @include globalButton;
+    border: none;
+    outline: none;
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding: 0.875rem 8.25rem;
+    margin-right: 1.5rem;
+
+    @include lg{
+        width: 100%;
+        padding: 0.875rem 0;
+        box-sizing: border-box;
+        margin-bottom: 1em;
+    }
+}
+
+.highlightBtn{
+    @include globalButton;
+    border: none;
+    outline: none;
+    background-color: $highlight-background-color;
+    color: $primary-btn-text-color;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding: 0.875rem 8.25rem;
+
+    @include lg{
+        width: 100%;
+        padding: 0.875rem 0;
+        box-sizing: border-box;
+    }
+}

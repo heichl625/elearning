@@ -1,0 +1,29 @@
+@import '../../../styles/color.scss';
+
+.about{
+    position: absolute;
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    background-color: $primary-background-color;
+    top: 6.5rem;
+    flex-wrap: wrap;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 1rem 0 rgba(0, 0, 0, 0.2);;
+}
+
+
+
+.item{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    padding: 1.25rem 1rem;
+}
+
+.item:hover{
+    background-color: $dropdown-option-hover-color;
+}

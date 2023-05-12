@@ -1,0 +1,37 @@
+.tutor-table{
+    width: 100%;
+}
+.delete-btn{
+    margin: 5px;
+}
+.input-item{
+    margin: 20px 0;
+}
+.input-item-img{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+.required{
+    color: red;
+}
+.name-input, .email-input{
+    width: 300px;
+    height: 25px;
+    font-size: 18px;
+}
+.uploaded-img{
+    width: 300px;
+    margin: 10px 0;
+}
+.description-input{
+    display: none;
+}
+
+.course-developer-input{
+    width: 300px;
+}
+
+.submit-btn{
+    margin-top: 10px;
+}

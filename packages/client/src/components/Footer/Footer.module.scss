@@ -1,0 +1,63 @@
+@import '../../styles/color.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    width: 100%;
+    height: 11.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url('../../images/Footer/footer_background@2x.png');
+    background-position: left top;
+    background-size: 95% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    flex-shrink: 0;
+
+    @include lg{
+        height: 6rem;
+        background-size: cover;
+        display: block;
+        padding: 1.5em;
+        box-sizing: border-box;
+    }
+}
+
+.darkBackground{
+    margin-top: -11.5rem;
+
+    @include lg{
+        margin-top: -3rem;
+    }
+}
+
+.copyright{
+    font-size: 0.875rem;
+    line-height: 1.225rem;
+    color: $secondary-text-color;
+    margin-left: 5rem;
+    @include lg{
+        margin: 0;
+        margin-bottom: 0.5em;
+    }
+}
+
+.tncLink{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 15.9375rem;
+
+    a{
+        font-size: 0.875rem;
+        color: $primary-text-color;
+        line-height: 1.225rem;
+    }
+    a:first-of-type{
+        margin-right: 3.4375rem;
+    }
+
+    @include lg{
+        margin-right: 0;
+        justify-content: flex-start;
+    }
+}

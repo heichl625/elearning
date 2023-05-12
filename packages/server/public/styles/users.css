@@ -1,0 +1,37 @@
+.user-table{
+    width: 100%;
+}
+.delete-btn{
+    margin: 5px;
+}
+.user-detail-card{
+    width: 1200px;
+    margin-bottom: 70px;
+}
+.user-info-section{
+    padding: 10px;
+}
+.section-title{
+    margin: 16px 0;
+    text-align: center;
+}
+.info-group{
+    font-size: 18px;
+}
+.user-interests{
+    display: flex;
+    flex-wrap:  wrap;
+}
+.user-interests .info-group{
+    flex-basis: 25%;    
+}
+.promo-setting .info-group{
+    margin-top: 1rem
+}
+
+.info-sub-group{
+    display: flex;
+}
+.info-sub-group-item{
+    margin-right: 3rem;
+}

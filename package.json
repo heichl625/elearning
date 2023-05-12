@@ -1,0 +1,10 @@
+{
+    "name": "melearn",
+    "license": "UNLICENSED",
+    "private": true,
+    "workspaces": [
+      "packages/server",
+      "packages/client"
+    ]
+  }
+  

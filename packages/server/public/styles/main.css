@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+html, body{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.logout-btn{
+    width: 50px;
+    text-decoration: none;
+    color: grey;
+}
+
+.nav-link{
+    display: inline !important;
+}
+
+.badge{
+    background-color: lightcoral  !important;
+}
+
+.content{
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    padding-top: 3rem;
+}
+
+.container{
+    flex-grow: 1;
+    width: 100%;
+}
+
+.inner-container{
+    flex-grow: 1;
+    overflow-y: scroll;
+    padding: 0 20px;
+}
+
+.inner-container-sm{
+    flex-basis: 600px;
+    flex-grow: 0;
+}
+
+.full-page-container{
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.full-page-container .page-title{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.error-msg{
+    background-color: #EF9A9A;
+    border-radius: 5px;
+    color: black;
+    padding: 10px;
+}
+
+.success-msg{
+    background-color: #CBFFC0;
+    border-radius: 5px;
+    color: black;
+    padding: 10px;
+}
+
+table, th, td{
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.input-item{
+    margin: 20px 0;
+}
+
+.ql-toolbar{
+    margin-top: 5px;
+    width: 100%;
+}
+#editor{
+    height: 200px;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.form-control{
+    width: 300px !important;
+}
+
+.required-label{
+    margin-left: 10px;
+}
+
+.form-check{
+    padding-left: 2em !important;
+}
+
+.submit-btn{
+    display: block !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pagination-container{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.pagination{
+    margin-right: 20px;
+}
+
+.page-btn{
+    margin-left: 5px;
+}
+
+.page-limit{
+    display: flex;
+    align-items: center;
+}
+

@@ -1,0 +1,33 @@
+.popupContainer{
+    width: 100%;
+    min-height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 8;
+}
+
+.popupCard{
+    background-color: #fff;
+    position: relative
+}
+
+.closeBtn{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-left: calc(100% - 60px);
+    margin-top: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 3;
+}

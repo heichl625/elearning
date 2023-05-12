@@ -1,0 +1,181 @@
+@layout('layout/main');
+
+@section('content')
+{{style('styles/transactions')}}
+<div class="full-page-container">
+    @!component('components/breadcrumb', {
+    items:[
+    {
+    link: '/cms/',
+    page: '主頁'
+    },
+    {
+    link: '/cms/transactions',
+    page: '交易紀錄'
+    }],
+    currentPage: transaction.id
+    })
+    @if(old('notification'))
+    <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+    <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    <div class="card transaction-detail-card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="info-section">
+                    <h3 class="section-title text-primary">購買項目</h3>
+                    <table class="transaction-table table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">課程名稱</th>
+                                <th scope="col">導師名稱</th>
+                                <th scope="col">價錢</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @each(transactionDetail in transactionDetails)
+                            <tr>
+                                <td>{{transactionDetail.course_title}}</td>
+                                <td>{{transactionDetail.tutor_name}}</td>
+                                <td>{{transactionDetail.price}}</td>
+                            </tr>
+                            @endeach
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>合共：HKD${{transaction.sub_total}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="info-section">
+                    <h3 class="section-title text-primary">付款詳情</h3>
+                    <div class="info-group">
+                        <label class="field-label">用戶電郵：</label>
+                        <label class="content-label">{{transaction.email}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">用戶電話：</label>
+                        <label class="content-label">{{transaction.area_code}} {{transaction.phone}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">付款日期：</label>
+                        <label class="content-label">{{transaction.created_at.toLocaleDateString()}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">付款方式：</label>
+                        <label class="content-label">{{transaction.method}}</label>
+                    </div>
+
+                    @if(transaction.method != '信用卡')
+                    <div class="info-group">
+                        <label class="field-label">銀行戶口持有人名稱：</label>
+                        <label class="content-label">{{transaction.holder_name}}</label>
+                    </div>
+                    <div class="info-group proof-container">
+                        <label class="field-label">入數憑証(點擊放大圖片或下載文件)：</label>
+                        @if(transaction.proof)
+                            @if(mime.mime == 'application/pdf')
+                                <a href="data:{{mime.mime}};base64,{{buffer}}" id='proog-pdf' download="melearn_transaction_{{transaction.id}}_proof.pdf">下載入數憑証</a>
+                            @else
+                                <img src='data:{{mime.mime}};base64,{{buffer}}' id='proog-img' class="proof-img" onclick="enlargePhoto('data:{{mime.mime}};base64,{{buffer}}')"/>
+                            @endif
+                        <script>
+                            function enlargePhoto(url){
+                                // let newWindow = window.open('')
+                                // newWindow.document.write(
+                                //     "<iframe width='100%' height='100%' src='" + url + "'></iframe>"
+                                // )
+                                let image = new Image();
+                                image.src = url;
+
+                                let newWindow = window.open("");
+                                newWindow.document.write('<img src="' + url + '" />');
+                                newWindow.documnet.close();
+                            }
+                        </script>
+                        @else
+                        <p class='pending-text'>未上傳入數憑証</p>
+                        @endif
+
+
+                    </div>
+                    @endif
+                    <div class="info-group">
+                        <label class="field-label">付款狀態：</label>
+                        <label class="content-label" id='transaction_status'>{{transaction.status}}</label>
+                        <script status='{{transaction.status}}'>
+                            let status = document.currentScript.getAttribute('status');
+                            let labelRef = document.querySelector('#transaction_status');
+                            switch (status) {
+                                case '已確認':
+                                    labelRef.classList.add('verified-text')
+                                    break;
+                                case '待確認':
+                                    labelRef.classList.add('pending-text')
+                                    break;
+                                case '失敗':
+                                    labelRef.classList.add('failed-text')
+                                    break;
+                                case '已失效':
+                                    labelRef.classList.add('failed-text')
+                                    break;
+                                case '退款中':
+                                    labelRef.classList.add('refunding-text')
+                                    break;
+                                case '已退款':
+                                    labelRef.classList.add('refunded-text')
+                                    break;
+                                default:
+                                    break;
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div class="change-status-section">
+                    @if(transaction.status == '待確認' || transaction.status == '失敗' || transaction.status == '未完成付款')
+                    <form action='/cms/transactions/{{transaction.id}}/change_status' method='POST'
+                        class="change-status-button">
+                        <input class='status-input' name='status' value='verified' />
+                        <button class='btn btn-success' type='submit'>確認交易</button>
+                    </form>
+                    @endif
+                    @if(transaction.status == '已確認' || transaction.status == '待確認' || transaction.status == '未完成付款')
+                    <form action='/cms/transactions/{{transaction.id}}/change_status' method='POST'
+                        class="change-status-button">
+                        <input class='status-input' name='status' value='failed' />
+                        <button class="btn btn-danger" type='submit'>交易無效</button>
+                    </form>
+                    @endif
+                    @if(transaction.status == '已確認' || transaction.status == '失敗')
+                    <form action='/cms/transactions/{{transaction.id}}/change_status' method='POST'
+                        class="change-status-button">
+                        <input class='status-input' name='status' value='pending' />
+                        <button class="btn btn-warning" type='submit'>交易待確定</button>
+                    </form>
+                    @endif
+                    @if(transaction.status == '已確認')
+                    <form action='/cms/transactions/{{transaction.id}}/change_status' method='POST'
+                        class="change-status-button">
+                        <input class='status-input' name='status' value='refunding' />
+                        <button class="btn btn-secondary" type='submit'>退款中</button>
+                    </form>
+                    @endif
+                    @if(transaction.status == '已確認' || transaction.status == '退款中')
+                    <form action='/cms/transactions/{{transaction.id}}/change_status' method='POST'
+                        class="change-status-button">
+                        <input class='status-input' name='status' value='refunded' />
+                        <button class="btn btn-dark" type='submit'>已退款</button>
+                    </form>
+                    @endif
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+@endsection

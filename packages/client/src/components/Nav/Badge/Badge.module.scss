@@ -1,0 +1,17 @@
+@import '../../../styles/color.scss';
+
+.badge{
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #225074;
+    width: 1.125rem;
+    height: 1.125rem;
+    color: $primary-btn-text-color;
+    font-size: 0.625rem;
+    position: absolute;
+    margin-top: -2.25rem;
+    margin-left: 0.75rem;
+}

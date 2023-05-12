@@ -1,0 +1,107 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/button.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0; 
+    right: 0;
+    padding: 1em 10em;
+    background-color: $dark-blue-btn-background;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+
+    @include lg{
+        position: relative;
+        padding: 1em 1.5em;
+        flex-direction: column;
+    }
+}
+
+.quizProgressContainer{
+    display: flex;
+
+    @include lg{
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+.quizProgress{
+    margin-right: 6.25em;
+
+    @include lg{
+        display: flex;
+        flex-direction: column-reverse;
+        margin-right: 20%;
+    }
+}
+
+.progressTitle{
+    color: $light-text-color;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 2rem;
+    margin-bottom: 0;
+    margin-top: 0;
+
+    @include lg{
+        font-size: 1rem;
+        line-height: 1.5rem;
+        font-weight: 500;
+    }
+}
+
+.progressCount{
+    color: $light-text-color;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 600;
+    margin: 0;
+    
+    @include lg{
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        font-weight: 500;
+    }
+}
+
+.progressTotal{
+    color: $light-text-color;
+    opacity: 0.5;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5rem;
+    margin-left: 0.25em;
+
+    @include lg{
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+        font-weight: 500;
+    }
+}
+
+.submitBtn{
+    @include globalButton;
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+    padding: 0.875rem 10.5rem;
+    border: none;
+    outline: none;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 600; 
+
+    @include lg{
+        width: 100%;
+        padding: 0.875em 0;
+    }
+}
+
+.disableBtn{
+    background-color: $disabled-color;
+    cursor: default;
+}

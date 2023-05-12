@@ -1,0 +1,25 @@
+@import '../../styles/color.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    padding: 5.625rem 10rem;
+    width: 100%;
+    box-sizing: border-box;
+
+    @include lg{
+        padding: 3em 5%;
+    }
+}
+
+.pageTitle{
+    color: $secondary-text-color;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+}
+
+.main{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+}

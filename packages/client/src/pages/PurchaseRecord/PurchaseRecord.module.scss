@@ -1,0 +1,51 @@
+@import '../../styles/color.scss';
+@import '../../styles/responsive.scss';
+
+.container{
+    padding: 5.625rem 10%;
+    width: 100%;
+    box-sizing: border-box;
+
+    @include lg{
+        padding: 3em 5%;
+    }
+}
+
+.pageTitle{
+    color: $secondary-text-color;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+
+    @include lg{
+        font-size: 1.5rem;
+        line-height: normal;
+        margin: 0;
+    }
+}
+
+.main{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4rem;
+
+    @include lg{
+        margin-top: 1.5em;
+    }
+}
+
+.recordList{
+    flex-basis: 70%;
+
+    @include lg{
+        flex-basis: 100%;
+        width: 100%;
+    }
+}
+
+.recordNum{
+    margin: 0 0 1.5rem;
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+}

@@ -1,0 +1,170 @@
+@layout('layout/main');
+
+@section('content')
+{{style('styles/users')}}
+<div class="full-page-container">
+    @!component('components/breadcrumb', {
+        items:[
+        {
+            link: '/cms/',
+            page: '主頁'
+        },
+        {
+            link: '/cms/users',
+            page: '用戶'
+        }],
+        currentPage: userData.username
+    })
+    @if(old('notification'))
+        <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+        <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    <div class="card user-detail-card">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="personal-info user-info-section">
+                    <h3 class="section-title text-primary">基本資料</h3>
+                    <div class="info-group">
+                        <label class="field-label">用戶名稱：</label>
+                        <label class="content-label">{{userData.username}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">電郵：</label>
+                        <label class="content-label">{{userData.email}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">電話：</label>
+                        <label class="content-label">{{userData.phone}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">加入時間：</label>
+                        <label class="content-label">{{userData.created_at.toLocaleDateString()}}</label>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="paid-member-info user-info-section">
+                    <h3 class="section-title text-primary">付費會員資料</h3>
+                    <div class="info-group">
+                        <label class="field-label">名稱：</label>
+                        <label class="content-label">{{userData.first_name ? userData.first_name : ''}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">姓氏：</label>
+                        <label class="content-label">{{userData.last_name ? userData.last_name : ''}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">性別：</label>
+                        <label class="content-label">{{userData.gender ? userData.gender  : ''}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">生日月份：</label>
+                        <label class="content-label">{{userData.birthday_month ? userData.birthday_month : ''}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">教育程度：</label>
+                        <label class="content-label">{{userData.education_level ? userData.education_level : ''}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">職業：</label>
+                        <label class="content-label">{{userData.occupation ? userData.occupation : ''}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">每月收入：</label>
+                        <label class="content-label">{{userData.monthly_income ? userData.monthly_income : ''}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">居住地區：</label>
+                        <label class="content-label">{{userData.living_area ? userData.living_area : ''}}</label>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <h3 class="section-title text-primary">用戶感興趣的範籌</h3>
+                <div class="user-interests user-info-section">
+                    <div class="info-group">
+                        <label class="field-label">股票/投資：</label>
+                        <label class="content-label text-primary">{{userInterestData.invest ? "✓" : "✕"}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">海外樓市/置業：</label>
+                        <label class="content-label text-primary">{{userInterestData.home_ownership ? "✓" : "✕"}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">市場營銷：</label>
+                        <label class="content-label text-primary">{{userInterestData.marketing ? "✓" : "✕"}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">工商管理：</label>
+                        <label class="content-label text-primary">{{userInterestData.business_management ? "✓" : "✕"}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">職場：</label>
+                        <label class="content-label text-primary">{{userInterestData.career ? "✓" : "✕"}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">健康/保健：</label>
+                        <label class="content-label text-primary">{{userInterestData.health ? "✓" : "✕"}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">親子/升學：</label>
+                        <label class="content-label text-primary">{{userInterestData.education ? "✓" : "✕"}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">旅遊：</label>
+                        <label class="content-label text-primary">{{userInterestData.travel ? "✓" : "✕"}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">其他：</label>
+                        <label class="content-label">{{userInterestData.other_interest ? userInterestData.other_interest : ''}}</label>
+                    </div>
+                    <div class="info-group">
+                        <label class="field-label">感興趣的導師：</label>
+                        <label class="content-label">{{userInterestData.interested_tutor ? userInterestData.interested_tutor : ''}}</label>
+                    </div>
+                </div>
+            </li>
+            <!-- <li class="list-group-item">
+                <div class="promo-setting user-info-section">
+                    <h3 class="section-title text-primary">資訊接收設定</h3>
+                    <div class="info-group">
+                        <label class="field-label">接收資訊：</label>
+                        <label class="content-label text-primary">{{usersPromoSettingData.receive_promo ? "✓" : "✕"}}</label>
+                    </div>
+                    
+                    <div class="info-group">
+                        <label class="field-label">資訊類別：</label>
+                        <div class="info-sub-group">
+                            <div class="info-sub-group-item">
+                                <label class="field-label">新書資訊：</label>
+                                <label class="content-label text-primary">{{usersPromoSettingData.book ? "✓" : "✕"}}</label>
+                            </div>
+                            <div class="info-sub-group-item">
+                                <label class="field-label">活動/工作坊：</label>
+                                <label class="content-label text-primary">{{usersPromoSettingData.activity ? "✓" : "✕"}}</label>
+                            </div> 
+                        </div>
+                    </div>
+
+                    
+                    <div class="info-group">
+                        <label class="field-label">接收方法：</label>
+                        <div class="info-sub-group">
+                            <div class="info-sub-group-item">
+                                <label class="field-label">Whatsapp：</label>
+                                <label class="content-label text-primary">{{usersPromoSettingData.whatsapp ? "✓" : "✕"}}</label>
+                            </div>
+                            <div class="info-sub-group-item">
+                                <label class="field-label">電郵：</label>
+                                <label class="content-label text-primary">{{usersPromoSettingData.email ? "✓" : "✕"}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+</div>
+@endsection

@@ -1,0 +1,10 @@
+export const SET_POPUP = "SET_POPUP";
+export const SET_POPUP_PAGE = 'SET_POPUP_PAGE'
+export const SET_PREV_POPUP_PAGE = 'SET_PREV_POPUP_PAGE';
+export const SET_CART_POPUP = 'SET_CART_POPUP';
+export const SET_CATEGORIES = 'SET_CATEGORIES';
+export const SET_REDIRECT_URL = 'SET_REDIRECT_URL';
+export const SET_CERT_HTML = 'SET_CERT_HTML';
+export const SET_PAYMNET_METHOD_ID = 'SET_PAYMNET_METHOD_ID';
+export const SET_LOADING = 'SET_LOADING';
+export const SET_PROMOTION = 'SET_PROMOTION';

@@ -1,0 +1,100 @@
+@layout('layout/main')
+
+@section('content')
+@set('url', request.url())
+{{style('styles/courses')}}
+<div class="full-page-container">
+    @!component('components/breadcrumb', {
+        items:[
+        {
+            link: '/cms',
+            page: '主頁'
+        },
+        {
+            link: '/cms/courses',
+            page: '課程'
+        }
+        ],
+        currentPage: '測驗'
+    })
+    <h2 class="page-title">測驗</h2>
+   
+    @if(old('notification'))
+        <div class="alert alert-success">{{old('notification')}}</div>
+    @endif
+    @if(old('error'))
+        <div class="alert alert-danger">{{old('error')}}</div>
+    @endif
+    <form action="/cms/courses/{{course_id}}/add-quiz-question" method="POST" onsubmit="submitForm()" enctype="multipart/form-data">
+        <div class="input-item row">
+            <label class="col-form-label col-sm-2"><span class="required">*</span>問題：</label>
+            <div class="col-sm-10">
+                <input placeholder='請輸入問題...' name="question" class="question-input form-control form-control-sm" required/>
+            </div>
+        </div>
+        <div class="input-item row">
+            <div class="col-sm-3">
+                <label class="col-form-label col-sm-12"><span class="required">*</span>選項A</label>
+                <input placeholder='請輸入選項...' name="a" class="question-input form-control form-control-sm" required/>
+            </div>
+            <div class="col-sm-3">
+                <label class="col-form-label col-sm-12"><span class="required">*</span>選項B</label>
+                <input placeholder='請輸入選項...' name="b" class="question-input form-control form-control-sm" required/>
+            </div>
+            <div class="col-sm-3">
+                <label class="col-form-label col-sm-12"><span class="required">*</span>選項C</label>
+                <input placeholder='請輸入選項...' name="c" class="question-input form-control form-control-sm" required/>
+            </div>
+            <div class="col-sm-3">
+                <label class="col-form-label col-sm-12"><span class="required">*</span>選項D</label>
+                <input placeholder='請輸入選項...' name="d" class="question-input form-control form-control-sm" required/>
+            </div>
+        </div>
+        <div class="input-item row">
+            <div class="col-sm-12">
+                <label class="col-form-label col-sm-2"><span class="required">*</span>答案:</label>
+                <select style='width: 100px' name='answer'>
+                    <option>a</option>
+                    <option>b</option>
+                    <option>c</option>
+                    <option>d</option>
+                </select>
+            </div>
+        </div>
+        <button class="btn btn-primary submit-btn">增加題目</button>
+    </form>
+
+    @if(questions.length > 0)
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>問題</th>
+                <th>選項A</th>
+                <th>選項B</th>
+                <th>選項C</th>
+                <th>選項D</th>
+                <th>答案</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @each(question in questions)
+                <tr>
+                    <td>{{question.question}}</td>
+                    <td>{{question.options.a.description}}</td>
+                    <td>{{question.options.b.description}}</td>
+                    <td>{{question.options.c.description}}</td>
+                    <td>{{question.options.d.description}}</td>
+                    <td>{{question.answer}}</td>
+                    <th><a href='/cms/courses/{{course_id}}/quiz/{{question.id}}/edit'>修改</a></th>
+                    <th><a href='/cms/courses/{{course_id}}/quiz/{{question.id}}/delete'>刪除</a></th>
+                </tr>
+            @endeach
+        </tbody>
+        
+    </table>
+    @endif
+
+</div>
+@endsection

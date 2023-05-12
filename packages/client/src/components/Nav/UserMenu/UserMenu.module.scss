@@ -1,0 +1,91 @@
+@import '../../../styles/color.scss';
+
+.container{
+    position: absolute;
+    top: 3rem;
+}
+
+.pointer{
+    width: 2rem;
+    height: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 16px 10px -17px rgba(0, 0, 0, 0.2);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pointer::after{
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    top: 1.5rem;
+    left: 0.5rem;
+    background-color: $primary-background-color;
+    transform: rotate(45deg); /* Prefixes... */
+    box-shadow: -1px -1px 10px -2px rgba(0, 0, 0, 0.2);
+}
+
+.menu{
+    width: 18.75rem;
+    display: flex;
+    flex-direction: column;
+    background-color: $primary-background-color;
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2);
+}
+
+.userContainer{
+    display: flex;
+    align-items: center;
+    background-color: #F0F6FA;
+}
+
+.menuItem{
+    padding: 1.75rem 1.875rem;
+    color: $secondary-text-color;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    text-decoration: none;
+}
+
+
+.userIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-btn-background-color;
+    border-radius: 50%;
+    width: 3.4375rem;
+    height: 3.4375rem;
+    margin-right: 1rem;
+}
+
+.iconLetter{
+    color: $primary-btn-text-color;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.userRight{
+    display: flex;
+    flex-direction: column;
+}
+
+.username{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    color: $secondary-text-color;
+    margin: 0;
+}
+
+.profileLink{
+    font-size: 0.875rem;
+    color: $primary-text-color;
+    line-height: 1.225rem;
+    text-decoration: none;
+}
+
+.logoutBtn{
+    border-top: 2px solid $border-color;
+}

@@ -1,0 +1,53 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/responsive.scss';
+
+
+.container{
+    width: 25%;
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-background-color;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+
+    @include lg{
+        display: none;
+    }
+}
+
+.avator{
+    background-color: $primary-btn-background-color;
+    color: $primary-btn-text-color;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 100%;
+    margin-bottom: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.875rem;
+    font-weight: 600;
+}
+
+.infoGroup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.infoLabel{
+    color: $disabled-text-color;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    margin: 0 0 0.5rem;
+}
+
+.info{
+    color: $secondary-text-color;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    margin: 0;
+}

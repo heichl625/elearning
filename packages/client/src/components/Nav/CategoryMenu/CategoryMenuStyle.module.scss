@@ -1,0 +1,26 @@
+@import '../../../styles/color.scss';
+
+.category{
+    position: absolute;
+    width: 29.5rem;
+    display: flex;
+    border-radius: 0.25rem 0 0.25rem 0.25rem;
+    background-color: $primary-background-color;
+    box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2);
+    top: 6.5rem;
+    left: 0;
+    flex-wrap: wrap;
+    padding: 1.875rem 2.56rem 0 2.56rem;
+    box-sizing: border-box;
+}
+
+.categoryItem{
+    display: flex;
+    align-items: center;
+    flex-basis: 50%;
+    margin-bottom: 1.875rem;
+}
+
+.categoryItem:hover{
+    font-weight: 600;
+}

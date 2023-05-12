@@ -1,0 +1,25 @@
+@import '../../../styles/color.scss';
+@import '../../../styles/responsive.scss';
+
+.container{
+    padding: 6.25em 5% 12rem;
+    background-color: $secondary-text-color;
+
+    @include lg{
+        padding: 2.5em 0 12em;
+    }
+}
+
+.title{
+    font-size: 2.1875rem;
+    line-height: 3.0625rem;
+    font-weight: 600;
+    color: $light-text-color;
+    margin: 0;
+
+    @include lg{
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+        padding: 0 10%;
+    }
+}
